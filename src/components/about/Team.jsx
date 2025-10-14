@@ -1,12 +1,5 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import agba from '../../../src/images/team/agba.png';
-import shina from '../../../src/images/team/shina.jpeg';
-import chef from '../../../src/images/team/chef.png';
-import emma from '../../../src/images/team/emma.png';
-import nike from '../../../src/images/team/nike.jpg';
-import favour from '../../../src/images/team/favour.jpg';
-import bolu from '../../../src/images/team/bolu.jpg';
 
 const teamMembers = [
   /* {
@@ -32,7 +25,7 @@ const teamMembers = [
     name: "Omoyele Samuel",
     role: "Tech Lead & Senior Software Engineer",
     bio: "Software engineer building and maintaining Nourie's robust platform. Committed to innovative and user-friendly digital solutions.",
-    image: agba
+    image: "/images/team/agba.png"
   },
   {
     name: "Otitolaye Samuel",
@@ -44,31 +37,31 @@ const teamMembers = [
     name: "Adediji Oluwashina",
     role: "Marketing & Sales Lead",
     bio: "Growth strategist connecting Nourie with the community. Expert in building brand awareness and fostering lasting customer relationships.",
-    image: shina
+    image: "/images/team/shina.jpeg"
   },
   {
     name: "Agbo George",
     role: "Head Chef",
     bio: "Culinary artist crafting every dish with passion and precision. Brings authentic Nigerian flavors to life, ensuring quality and deliciousness.",
-    image: chef
+    image: "/images/team/chef.png"
   },
   {
     name: "Emmanuel Olobayo",
     role: "Customer Support Officer",
     bio: "The friendly voice of Nourie, ensuring every customer feels heard, valued, and supported.",
-    image: emma
+    image: "/images/team/emma.png"
   },
   {
     name: "Adenike Mogbojuri",
     role: "Content Creator & Social Media Manager",
     bio: "Crafting Nourie's story and engaging our community across all social platforms with compelling content.",
-    image: nike
+    image: "/images/team/nike.jpg"
   },
   {
     name: "Favour Udelue",
     role: "Digital Marketing Specialist",
     bio: "Driving online growth through strategic digital marketing campaigns and online presence optimization.",
-    image: favour
+    image: "/images/team/favour.jpg"
   },
   {
     name: "Emeka Ezeliora",
@@ -80,7 +73,7 @@ const teamMembers = [
     name: "Boluwatife Ogundiran",
     role: "FullStack Dev Intern",
     bio: "A budding developer contributing to the robustness and functionality of our digital platform.",
-    image: bolu
+    image: "/images/team/bolu.jpg"
   },
   {
     name: "Jesujoba Jemimah",
