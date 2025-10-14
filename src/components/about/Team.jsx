@@ -55,7 +55,7 @@ const teamMembers = [
     name: "Adenike Mogbojuri",
     role: "Content Creator & Social Media Manager",
     bio: "Crafting Nourie's story and engaging our community across all social platforms with compelling content.",
-    image: "/images/team/nike.jpg"
+    image: "/images/team/nike.JPG"
   },
   {
     name: "Favour Udelue",
