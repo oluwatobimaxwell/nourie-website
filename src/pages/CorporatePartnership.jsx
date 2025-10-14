@@ -251,7 +251,7 @@ export default function CorporatePartnership() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://media.istockphoto.com/id/615899900/photo/you-guys-came-up-with-some-great-ideas.jpg?s=612x612&w=0&k=20&c=lSKOw5iFOAkfhK2g3vEerI-PcwmVvUzTaroFxB8MSDY="
+            src="https://images.nappy.co/photo/k3oxAmQFh849PoG0X4lCY.jpg?auto=compress%2Cformat&h=750&w=1260"
             alt="Professional African team dining"
             className="w-full h-full object-cover"
           />

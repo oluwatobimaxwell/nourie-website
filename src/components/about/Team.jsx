@@ -49,7 +49,7 @@ const teamMembers = [
     name: "Emmanuel Olobayo",
     role: "Customer Support Officer",
     bio: "The friendly voice of Nourie, ensuring every customer feels heard, valued, and supported.",
-    image: "https://ui-avatars.com/api/?name=Emmanuel+Olobayo&size=150&background=FFD166&color=121212&rounded=true"
+    image: "../src/images/team/emma.png"
   },
   {
     name: "Adenike Mogbojuri",
