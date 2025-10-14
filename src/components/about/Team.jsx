@@ -25,7 +25,7 @@ const teamMembers = [
     name: "Omoyele Samuel",
     role: "Tech Lead & Senior Software Engineer",
     bio: "Software engineer building and maintaining Nourie's robust platform. Committed to innovative and user-friendly digital solutions.",
-    image: "../src/images/agba.png"
+    image: "../src/images/team/agba.png"
   },
   {
     name: "Otitolaye Samuel",
@@ -37,13 +37,13 @@ const teamMembers = [
     name: "Adediji Oluwashina",
     role: "Marketing & Sales Lead",
     bio: "Growth strategist connecting Nourie with the community. Expert in building brand awareness and fostering lasting customer relationships.",
-    image: "https://ui-avatars.com/api/?name=Adediji+Oluwashina&size=150&background=F9A03F&color=ffffff&rounded=true"
+    image: "../src/images/team/shina.jpeg"
   },
   {
     name: "Agbo George",
     role: "Head Chef",
     bio: "Culinary artist crafting every dish with passion and precision. Brings authentic Nigerian flavors to life, ensuring quality and deliciousness.",
-    image: "https://ui-avatars.com/api/?name=Agbo+George&size=150&background=A8D5BA&color=121212&rounded=true"
+    image: "../src/images/team/chef.png"
   },
   {
     name: "Emmanuel Olobayo",
@@ -55,13 +55,13 @@ const teamMembers = [
     name: "Adenike Mogbojuri",
     role: "Content Creator & Social Media Manager",
     bio: "Crafting Nourie's story and engaging our community across all social platforms with compelling content.",
-    image: "https://ui-avatars.com/api/?name=Adenike+Mogbojuri&size=150&background=356859&color=ffffff&rounded=true"
+    image: "../src/images/team/nike.jpg"
   },
   {
     name: "Favour Udelue",
     role: "Digital Marketing Specialist",
     bio: "Driving online growth through strategic digital marketing campaigns and online presence optimization.",
-    image: "https://ui-avatars.com/api/?name=Favour+Udelue&size=150&background=F9A03F&color=ffffff&rounded=true"
+    image: "../src/images/team/favour.jpg"
   },
   {
     name: "Emeka Ezeliora",
@@ -73,7 +73,7 @@ const teamMembers = [
     name: "Boluwatife Ogundiran",
     role: "FullStack Dev Intern",
     bio: "A budding developer contributing to the robustness and functionality of our digital platform.",
-    image: "https://ui-avatars.com/api/?name=Boluwatife+Ogundiran&size=150&background=FFD166&color=121212&rounded=true"
+    image: "../src/images/team/bolu.jpg"
   },
   {
     name: "Jesujoba Jemimah",
@@ -129,7 +129,7 @@ export default function Team() {
                 <motion.img
                   src={member.image}
                   alt={member.name}
-                  className="w-40 h-40 rounded-full object-cover border-4 border-[var(--glass-border)]"
+                  className="w-40 h-40 rounded-full object-cover object-top border-4 border-[var(--glass-border)]"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 />
