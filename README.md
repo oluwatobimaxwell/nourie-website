@@ -1,20 +1,4 @@
-# Base44 App
+# 🍽️ Nourie Website
 
-
-This app was created automatically by Base44.
-It's a Vite+React app that communicates with the Base44 API.
-
-## Running the app
-
-```bash
-npm install
-npm run dev
-```
-
-## Building the app
-
-```bash
-npm run build
-```
-
-For more information and support, please contact Base44 support at app@base44.com.
+Nourie is a modern food-tech platform revolutionizing how Nigeria experiences food — offering corporate meals, event catering, subscriptions, and more.  
+This repository contains the **frontend application** built with **React (via Base44.dev)**, integrating with Nourie’s Django backend API.
