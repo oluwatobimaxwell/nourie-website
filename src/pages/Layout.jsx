@@ -241,20 +241,22 @@ function LayoutContent({ children, currentPageName }) {
                 </Link>
               </motion.div>
             ))}
-            
+            <Link to={createPageUrl("waitinglist")}>
             <motion.div 
               className="border-t border-[var(--glass-border)] pt-6 mt-6 flex items-center justify-between"
               initial={{ opacity: 0 }}
               animate={{ opacity: mobileMenuOpen ? 1 : 0 }}
               transition={{ delay: mobileMenuOpen ? 0.6 : 0 }}
             >
+
               <motion.button 
                 className="w-full px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-[var(--secondary-accent)] to-[var(--yellow-accent)] text-[#121212]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Get Started
+                Join WaitList
               </motion.button>
+      
 
               <motion.button
                   onClick={toggleTheme}
@@ -265,6 +267,7 @@ function LayoutContent({ children, currentPageName }) {
                   {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
                 </motion.button>
             </motion.div>
+                    </Link>
           </div>
         </motion.div>
       </motion.nav>
