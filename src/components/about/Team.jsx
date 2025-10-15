@@ -13,13 +13,13 @@ const teamMembers = [
     name: "Moyin Sholanke",
     role: "Co-Founder & COO",
     bio: "Operational mastermind ensuring seamless execution, from kitchen to delivery. Dedicated to efficiency and exceptional customer experience.",
-    image: "https://ui-avatars.com/api/?name=Moyin+Sholanke&size=150&background=F9A03F&color=ffffff&rounded=true"
+    image: "/images/team/moyin.png"
   },
   {
     name: "Ayo Sholanke",
     role: "Co-Founder/Kitchen Coordinator & Logistics Manager",
     bio: "Ensuring timely and accurate delivery across Abuja. Manages the operational flow for a smooth user and delivery experience.",
-    image: "https://ui-avatars.com/api/?name=Ayo+Sholanke&size=150&background=A8D5BA&color=121212&rounded=true"
+    image: "/images/team/ayo.png"
   },
   {
     name: "Omoyele Samuel",
@@ -31,7 +31,7 @@ const teamMembers = [
     name: "Otitolaye Samuel",
     role: "Admin & HR Manager",
     bio: "Fostering a positive workplace culture and managing the administrative heartbeat of our operations.",
-    image: "https://ui-avatars.com/api/?name=Otitolaye+Samuel&size=150&background=356859&color=ffffff&rounded=true"
+    image: "/images/team/sam.jpeg"
   },
   {
     name: "Adediji Oluwashina",
@@ -67,7 +67,7 @@ const teamMembers = [
     name: "Emeka Ezeliora",
     role: "FullStack Dev Intern",
     bio: "Bringing fresh ideas and coding skills to help build and refine the Nourie app experience.",
-    image: "https://ui-avatars.com/api/?name=Emeka+Ezeliora&size=150&background=A8D5BA&color=121212&rounded=true"
+    image: "/images/team/emeka.png"
   },
   {
     name: "Boluwatife Ogundiran",
@@ -76,22 +76,22 @@ const teamMembers = [
     image: "/images/team/bolu.jpg"
   },
   {
-    name: "Jesujoba Jemimah",
+    name: "Blessed-Agboola Jemimah",
     role: "FullStack Dev Intern",
     bio: "Supporting our tech team with enthusiasm and a drive to build great software solutions.",
-    image: "https://ui-avatars.com/api/?name=Jesujoba+Jemimah&size=150&background=356859&color=ffffff&rounded=true"
+    image: "/images/team/joba.jpeg"
   },
   {
     name: "Unwaba Maria",
     role: "Cleaner / Kitchen Assistant",
     bio: "Maintaining a pristine and hygienic kitchen environment, the foundation of our food quality promise.",
-    image: "https://ui-avatars.com/api/?name=Unwaba+Maria&size=150&background=F9A03F&color=ffffff&rounded=true"
+    image: "/images/team/maria2.png"
   },
   {
     name: "Yakubu Numshi Yohanna",
     role: "Operations Support Assistant",
     bio: "The backbone of our operations, providing critical support to ensure everything runs smoothly from kitchen to customer.",
-    image: "https://ui-avatars.com/api/?name=Yakubu+Yohanna&size=150&background=A8D5BA&color=121212&rounded=true"
+    image: "/images/team/yakubu2.png"
   },
 ];
 

@@ -53,7 +53,6 @@ function LayoutContent({ children, currentPageName }) {
     { name: "About", path: createPageUrl("About") },
     { name: "How It Works", path: createPageUrl("HowItWorks") },
     { name: "Partnership", path: createPageUrl("CorporatePartnership") },
-    { name: "Join Waitlist", path: createPageUrl("WaitingList") },
     { name: "Contact", path: createPageUrl("Contact") },
   ];
 
@@ -175,7 +174,7 @@ function LayoutContent({ children, currentPageName }) {
                     whileTap={{ scale: 0.95 }}
                   >
                     
-                    Get Started
+                    Join Waitlist
                   </motion.button>
                   </Link>
                   

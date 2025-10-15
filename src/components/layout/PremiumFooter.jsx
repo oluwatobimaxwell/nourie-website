@@ -159,31 +159,30 @@ export default function PremiumFooter() {
             <div>
               <h4 className="font-semibold text-lg mb-6 text-[var(--text-main)]">Get The App</h4>
               <div className="space-y-4">
-                <motion.a 
-                  href="#" 
-                  className="group w-full glass-morphism text-[var(--text-main)] px-4 py-3 rounded-xl font-medium flex items-center space-x-3 hover:bg-[var(--background-alt)]/60 transition-all duration-300"
+              <Link to={createPageUrl("waitinglist")}
+              className="group w-full glass-morphism text-[var(--text-main)] px-4 py-3 rounded-xl font-medium flex items-center space-x-3 hover:bg-[var(--background-alt)]/60 transition-all duration-300">
+                <motion.div 
+                  className="flex items-center space-x-3"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                   <Link to={createPageUrl("waitinglist")}>
                   <Apple className="w-5 h-5" />
-                   </Link>
+
                   <span>iOS App</span>
                  
-                </motion.a>
-                
-                <motion.a 
-                  href="#" 
-                  className="group w-full glass-morphism text-[var(--text-main)] px-4 py-3 rounded-xl font-medium flex items-center space-x-3 hover:bg-[var(--background-alt)]/60 transition-all duration-300"
+                </motion.div>
+              </Link>
+              <Link to={createPageUrl("waitinglist")}
+              className="group w-full glass-morphism text-[var(--text-main)] px-4 py-3 rounded-xl font-medium flex items-center space-x-3 hover:bg-[var(--background-alt)]/60 transition-all duration-300">
+                <motion.div 
+                  className="flex items-center space-x-3"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                   <Link to={createPageUrl("waitinglist")}>
                   <Play className="w-5 h-5" />
-                   </Link>
                   <span>Android App</span>
-                
-                </motion.a>
+                </motion.div>
+                   </Link>
               </div>
             </div>
 
