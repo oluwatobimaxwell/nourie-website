@@ -91,7 +91,7 @@ const teamMembers = [
     name: "Yakubu Numshi Yohanna",
     role: "Operations Support Assistant",
     bio: "The backbone of our operations, providing critical support to ensure everything runs smoothly from kitchen to customer.",
-    image: "/images/team/yakubu2.png"
+    image: "/images/team/yak.png"
   },
 ];
 
