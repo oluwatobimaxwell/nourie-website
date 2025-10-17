@@ -1,3 +1,4 @@
+// src/components/ScrollToTop.jsx
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -5,17 +6,22 @@ export default function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // If there's a hash, scroll to that section
+    // If the route has a hash (#section), scroll to that section instead
     if (hash) {
-      const section = document.querySelector(hash);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      const element = document.querySelector(hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+        return;
       }
-    } else {
-      // No hash → always scroll to top
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [pathname]); // Only re-run when the route (not just hash) changes
+
+    // Otherwise, scroll to top normally
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }, 100);
+  }, [pathname, hash]);
 
   return null;
 }

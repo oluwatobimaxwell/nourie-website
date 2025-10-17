@@ -233,14 +233,14 @@ const AdvantageSection = () => {
 export default function HowItWorks() {
   const location = useLocation();
 
-  useEffect(() => {
-    if (location.hash) {
-      const el = document.querySelector(location.hash);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-  }, [location]);
+  // useEffect(() => {
+  //   if (location.hash) {
+  //     const el = document.querySelector(location.hash);
+  //     if (el) {
+  //       el.scrollIntoView({ behavior: "smooth", block: "start" });
+  //     }
+  //   }
+  // }, [location]);
 
   const preOrderSteps = [
     { icon: Calendar, title: "Plan Your Week", description: "Browse our menu and schedule your meals for any day, at any time. Perfect for busy lives.", image: "https://media.istockphoto.com/id/1491200150/vector/daily-meal-plan-isolated-cartoon-vector-illustration.jpg?s=612x612&w=0&k=20&c=JPfnFLr6Tpfns6iPyca58CEdsDi1xcTWHOpQpZpVkIc=" },
