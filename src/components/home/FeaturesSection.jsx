@@ -8,7 +8,7 @@ const features = [
   {
     id: 'pre-order',
     icon: Calendar,
-    title: "Smart Pre-Ordering",
+    title: "Pre-Order",
     subtitle: "Plan ahead, save more",
     description: "Schedule your meals up to a week in advance and enjoy up to 30% savings. Perfect for busy professionals who value both convenience and cost-effectiveness.",
     image: "https://images.pexels.com/photos/13915043/pexels-photo-13915043.jpeg",
@@ -24,7 +24,7 @@ const features = [
   {
     id: 'instant',
     icon: Zap,
-    title: "Lightning-Fast Delivery",
+    title: "Instant Delivery",
     subtitle: "Hungry now? We've got you",
     description: "Craving something delicious right now? Order from our instant menu and get hot, fresh meals delivered to your door in just 15-30 minutes.",
     image: "https://images.pexels.com/photos/3926133/pexels-photo-3926133.jpeg",
@@ -40,7 +40,7 @@ const features = [
   {
     id: 'subscription',
     icon: Repeat,
-    title: "Flexible Meal Subscriptions",
+    title: "Subscription",
     subtitle: "Your personalized meal plan",
     description: "Take the stress out of meal planning with Nourie's flexible subscription service. Choose your favorite meals, customize your preferences, and have fresh, delicious dishes delivered on your schedule.",
     image: "https://www.foodnify.com/wp-content/uploads/2024/09/abula-soup.jpg",
@@ -67,7 +67,7 @@ export default function FeaturesSection() {
     
     const interval = setInterval(() => {
       setActiveTab((prev) => (prev + 1) % features.length);
-    }, 5000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [autoPlay]);
@@ -75,40 +75,31 @@ export default function FeaturesSection() {
   const activeFeature = features[activeTab];
 
   return (
-    <section ref={ref} className="py-20 sm:py-32 bg-[var(--background-alt)] relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute w-96 h-96 rounded-full blur-3xl opacity-10 top-20 right-20"
-          style={{ backgroundColor: activeFeature.color }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={ref} className="py-24 md:py-32 bg-[var(--background)] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="text-center mb-12"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-[var(--text-main)] mb-4 leading-tight">
-            Three ways to experience <br />
-            <span className="gradient-text">exceptional food</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text-main)] mb-6 tracking-tight">
+            Choose your way to eat better
           </h2>
-          <p className="text-lg text-[var(--text-muted)] leading-relaxed font-light max-w-2xl mx-auto">
-            Whether you're a planner or spontaneous, we've designed the perfect dining experience for your lifestyle.
+          <p className="text-xl text-[var(--text-muted)] max-w-2xl mx-auto font-light">
+            Flexible options designed for every lifestyle
           </p>
         </motion.div>
 
-        {/* Tabs Navigation */}
+        {/* Clean Tab Navigation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex justify-center mb-12"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex justify-center mb-16"
         >
-          <div className="inline-flex glass-morphism rounded-2xl p-2 gap-2">
+          <div className="inline-flex items-center gap-1 p-1 rounded-full bg-[var(--background-alt)]">
             {features.map((feature, index) => (
               <button
                 key={feature.id}
@@ -116,17 +107,17 @@ export default function FeaturesSection() {
                   setActiveTab(index);
                   setAutoPlay(false);
                 }}
-                className={`flex items-center space-x-3 px-6 py-4 rounded-xl font-semibold transition-all duration-300 ${
-                  activeTab === index
-                    ? 'bg-[var(--background)] shadow-lg'
-                    : 'hover:bg-[var(--background)]/50'
-                }`}
+                className="relative px-8 py-3 rounded-full font-medium text-base transition-all duration-300"
                 style={{
-                  color: activeTab === index ? feature.color : 'var(--text-muted)'
+                  backgroundColor: activeTab === index ? 'var(--background)' : 'transparent',
+                  color: activeTab === index ? feature.color : 'var(--text-muted)',
+                  boxShadow: activeTab === index ? '0 4px 12px rgba(0, 0, 0, 0.08)' : 'none'
                 }}
               >
-                <feature.icon className="w-5 h-5" />
-                <span className="hidden sm:inline">{feature.title}</span>
+                <span className="flex items-center space-x-2">
+                  <feature.icon className="w-4 h-4" />
+                  <span className="hidden sm:inline">{feature.title}</span>
+                </span>
               </button>
             ))}
           </div>
@@ -139,116 +130,120 @@ export default function FeaturesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="grid lg:grid-cols-2 gap-12 items-center"
+            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto"
           >
             {/* Content */}
-            <div>
-              <div className="flex items-center space-x-4 mb-6">
-                <div 
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center"
-                  style={{ backgroundColor: `${activeFeature.color.replace('var(','').replace(')','')}20` }}
-                >
-                  <activeFeature.icon 
-                    className="w-8 h-8" 
-                    style={{ color: activeFeature.color }}
-                  />
-                </div>
-                <div>
-                  <h3 className="text-3xl lg:text-4xl font-bold text-[var(--text-main)]">
-                    {activeFeature.title}
-                  </h3>
-                  <p 
-                    className="text-lg font-medium mt-1"
-                    style={{ color: activeFeature.color }}
+            <div className="order-2 lg:order-1">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="flex items-center space-x-3 mb-6">
+                  <div 
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center"
+                    style={{ backgroundColor: `${activeFeature.color}15` }}
                   >
-                    {activeFeature.subtitle}
-                  </p>
-                </div>
-              </div>
-              
-              <p className="text-lg text-[var(--text-muted)] leading-relaxed font-light mb-8">
-                {activeFeature.description}
-              </p>
-
-              {/* Benefits List */}
-              <div className="space-y-3 mb-8">
-                {activeFeature.benefits.map((benefit, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: idx * 0.1 }}
-                    className="flex items-center space-x-3"
-                  >
-                    <CheckCircle2 
-                      className="w-5 h-5 flex-shrink-0" 
+                    <activeFeature.icon 
+                      className="w-6 h-6" 
                       style={{ color: activeFeature.color }}
                     />
-                    <span className="text-[var(--text-main)]">{benefit}</span>
-                  </motion.div>
-                ))}
-              </div>
+                  </div>
+                  <div>
+                    <h3 className="text-3xl lg:text-4xl font-bold text-[var(--text-main)]">
+                      {activeFeature.title}
+                    </h3>
+                    <p 
+                      className="text-base font-medium mt-1"
+                      style={{ color: activeFeature.color }}
+                    >
+                      {activeFeature.subtitle}
+                    </p>
+                  </div>
+                </div>
+                
+                <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-8 font-light">
+                  {activeFeature.description}
+                </p>
 
-              <Link 
-                to={activeFeature.linkTo}
-                className="inline-flex items-center space-x-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
-                style={{ 
-                  backgroundColor: `${activeFeature.color.replace('var(','').replace(')','')}20`,
-                  color: activeFeature.color,
-                  border: `1px solid ${activeFeature.color.replace('var(','').replace(')','')}40`
-                }}
-              >
-                <span>Learn More</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+                {/* Benefits List */}
+                <div className="space-y-4 mb-8">
+                  {activeFeature.benefits.map((benefit, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: 0.3 + idx * 0.1 }}
+                      className="flex items-center space-x-3"
+                    >
+                      <div 
+                        className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: `${activeFeature.color}20` }}
+                      >
+                        <CheckCircle2 
+                          className="w-3 h-3" 
+                          style={{ color: activeFeature.color }}
+                        />
+                      </div>
+                      <span className="text-[var(--text-main)]">{benefit}</span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <Link 
+                  to={activeFeature.linkTo}
+                  className="inline-flex items-center space-x-2 text-base font-semibold group"
+                  style={{ color: activeFeature.color }}
+                >
+                  <span>Learn more</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
             </div>
 
             {/* Image */}
-            <div className="relative">
+            <div className="order-1 lg:order-2">
               <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="relative h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl"
               >
                 <img 
                   src={activeFeature.image}
                   alt={activeFeature.title}
                   className="w-full h-full object-cover"
                 />
-                <div 
-                  className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
               </motion.div>
-              
-              {/* Decorative element */}
-              <div 
-                className="absolute -inset-4 rounded-3xl blur-xl opacity-20 -z-10"
-                style={{ backgroundColor: activeFeature.color }}
-              />
             </div>
           </motion.div>
         </AnimatePresence>
 
         {/* Progress Indicator */}
-        <div className="flex justify-center mt-8 space-x-2">
-          {features.map((_, index) => (
+        <div className="flex justify-center mt-12 space-x-3">
+          {features.map((feature, index) => (
             <button
               key={index}
               onClick={() => {
                 setActiveTab(index);
                 setAutoPlay(false);
               }}
-              className="relative w-12 h-1 rounded-full bg-[var(--background)] overflow-hidden"
+              className="group"
             >
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                style={{ backgroundColor: features[index].color, transformOrigin: 'left'  }}
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: activeTab === index ? 1 : 0 }}
-                transition={{ duration: autoPlay && activeTab === index ? 5 : 0.3 }}
-              />
+              <div className="relative w-16 h-1 rounded-full bg-[var(--background-alt)] overflow-hidden">
+                <motion.div
+                  className="absolute inset-0 rounded-full"
+                  style={{ backgroundColor: feature.color, transformOrigin: 'left' }}
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: activeTab === index ? 1 : 0 }}
+                  transition={{ 
+                    duration: autoPlay && activeTab === index ? 6 : 0.3,
+                    ease: "linear"
+                  }}
+                />
+              </div>
             </button>
           ))}
         </div>
