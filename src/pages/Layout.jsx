@@ -13,11 +13,18 @@ function LayoutContent({ children, currentPageName }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
 
   useEffect(() => {
+    // Close mobile menu and dropdowns on navigation
+    setMobileMenuOpen(false);
+    setMobileAboutOpen(false);
+    
     if (!location.hash) {
+      // Scroll to top if no hash
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
+      // Scroll to section if hash exists
       const section = document.querySelector(location.hash);
       if (section) {
         setTimeout(() => {
@@ -68,10 +75,19 @@ function LayoutContent({ children, currentPageName }) {
   ];
 
   const isActiveMenuItem = (itemPath) => {
+    // Check if the current path directly matches the item path
+    if (location.pathname === itemPath) {
+      return true;
+    }
+    // Special handling for the root path and home page
     if (location.pathname === "/" && itemPath === createPageUrl("Home")) {
       return true;
     }
-    return location.pathname === itemPath;
+    // Check if the current path is a sub-path of an 'About' section, making 'About' active
+    if (itemPath === createPageUrl("About") && location.pathname.startsWith(createPageUrl("About"))) {
+        return true;
+    }
+    return false;
   };
 
   return (
@@ -205,6 +221,7 @@ function LayoutContent({ children, currentPageName }) {
                                   key={idx}
                                   to={dropdownItem.path}
                                   className="block px-4 py-3 text-sm text-[var(--text-muted)] hover:text-[var(--primary-accent)] hover:bg-[var(--background-alt)]/50 transition-all duration-200"
+                                  onClick={() => setAboutDropdownOpen(false)} // Close dropdown on item click
                                 >
                                   {dropdownItem.name}
                                 </Link>
@@ -239,7 +256,7 @@ function LayoutContent({ children, currentPageName }) {
                     
                     Join Waitlist
                   </motion.button>
-                  </Link>                  
+                  </Link>    
                   <motion.button
                     onClick={toggleTheme}
                     className="p-2 rounded-full glass-morphism text-[var(--text-main)]"
@@ -291,20 +308,62 @@ function LayoutContent({ children, currentPageName }) {
                   ease: [0.25, 0.1, 0.25, 1]
                 }}
               >
-                <Link
-                  to={item.path}
-                  className={`block text-base font-medium transition-colors duration-300 ${
-                    isActiveMenuItem(item.path) 
-                      ? 'text-[var(--primary-accent)]' 
-                      : 'text-[var(--text-muted)] hover:text-[var(--primary-accent)]'
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                {item.hasDropdown ? (
+                  <div>
+                    <button
+                      onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+                      className={`flex items-center justify-between w-full text-base font-medium transition-colors duration-300 ${
+                        isActiveMenuItem(item.path) || (item.path === createPageUrl("About") && location.pathname.startsWith(createPageUrl("About")))
+                          ? 'text-[var(--primary-accent)]' 
+                          : 'text-[var(--text-muted)]'
+                      }`}
+                    >
+                      <span>{item.name}</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileAboutOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    <AnimatePresence>
+                      {mobileAboutOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="mt-3 ml-4 space-y-3 overflow-hidden"
+                        >
+                          {item.dropdownItems.map((dropdownItem, idx) => (
+                            <Link
+                              key={idx}
+                              to={dropdownItem.path}
+                              className="block text-sm text-[var(--text-muted)] hover:text-[var(--primary-accent)] transition-colors duration-200"
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setMobileAboutOpen(false);
+                              }}
+                            >
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link
+                    to={item.path}
+                    className={`block text-base font-medium transition-colors duration-300 ${
+                      isActiveMenuItem(item.path) 
+                        ? 'text-[var(--primary-accent)]' 
+                        : 'text-[var(--text-muted)] hover:text-[var(--primary-accent)]'
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </motion.div>
             ))}
-        <Link to={createPageUrl("waitinglist")}>
+            <Link to={createPageUrl("waitinglist")}>
             <motion.div 
               className="border-t border-[var(--glass-border)] pt-6 mt-6 flex items-center justify-between"
               initial={{ opacity: 0 }}
@@ -331,7 +390,7 @@ function LayoutContent({ children, currentPageName }) {
                 </motion.button>
             </motion.div>
                     </Link>         
-                     </div>
+          </div>
         </motion.div>
       </motion.nav>
 
