@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -21,7 +20,7 @@ function LayoutContent({ children, currentPageName }) {
     setMobileAboutOpen(false);
     
     if (!location.hash) {
-      // Scroll to top if no hash
+      // Scroll to top if no hash - applies to ALL pages
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       // Scroll to section if hash exists
@@ -39,12 +38,12 @@ function LayoutContent({ children, currentPageName }) {
   const navBackground = useTransform(
     scrollYProgress,
     [0, 0.1],
-    ["rgba(18, 18, 18, 0)", "rgba(18, 18, 18, 0.95)"]
+    ["rgba(18, 18, 18, 0.95)", "rgba(18, 18, 18, 0.95)"]
   );
-   const navBackgroundLight = useTransform(
+  const navBackgroundLight = useTransform(
     scrollYProgress,
     [0, 0.1],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.95)"]
+    ["rgba(255, 255, 255, 0.95)", "rgba(255, 255, 255, 0.95)"]
   );
 
   const isHomePage = location.pathname === createPageUrl("Home") || location.pathname === "/";
@@ -75,19 +74,10 @@ function LayoutContent({ children, currentPageName }) {
   ];
 
   const isActiveMenuItem = (itemPath) => {
-    // Check if the current path directly matches the item path
-    if (location.pathname === itemPath) {
-      return true;
-    }
-    // Special handling for the root path and home page
     if (location.pathname === "/" && itemPath === createPageUrl("Home")) {
       return true;
     }
-    // Check if the current path is a sub-path of an 'About' section, making 'About' active
-    if (itemPath === createPageUrl("About") && location.pathname.startsWith(createPageUrl("About"))) {
-        return true;
-    }
-    return false;
+    return location.pathname === itemPath;
   };
 
   return (
@@ -142,15 +132,13 @@ function LayoutContent({ children, currentPageName }) {
       <motion.nav 
         className="fixed top-0 w-full z-50 transition-colors duration-300"
         style={{
-          backgroundColor: (isHomePage && window.innerWidth < 1024) 
-            ? 'transparent' 
-            : (theme === 'dark' ? navBackground : navBackgroundLight),
-          backdropFilter: (isHomePage && window.innerWidth < 1024) ? 'none' : 'blur(12px)',
+          backgroundColor: theme === 'dark' ? navBackground : navBackgroundLight,
+          backdropFilter: 'blur(12px)',
         }}
       >
         <div 
-          className={`transition-all duration-500 ${(isHomePage && window.innerWidth < 1024) ? '' : 'border-b border-[var(--glass-border)]'}`}
-          style={{ borderColor: scrollY > 50 ? 'var(--glass-border)' : 'transparent' }}
+          className="transition-all duration-500 border-b border-[var(--glass-border)]"
+          style={{ borderColor: 'var(--glass-border)' }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-20">
@@ -221,7 +209,7 @@ function LayoutContent({ children, currentPageName }) {
                                   key={idx}
                                   to={dropdownItem.path}
                                   className="block px-4 py-3 text-sm text-[var(--text-muted)] hover:text-[var(--primary-accent)] hover:bg-[var(--background-alt)]/50 transition-all duration-200"
-                                  onClick={() => setAboutDropdownOpen(false)} // Close dropdown on item click
+                                  onClick={() => setAboutDropdownOpen(false)}
                                 >
                                   {dropdownItem.name}
                                 </Link>
@@ -247,7 +235,7 @@ function LayoutContent({ children, currentPageName }) {
                       </Link>
                     )
                   ))}
-                      <Link to={createPageUrl("waitinglist")}>
+                     <Link to={createPageUrl("waitinglist")}>
                   <motion.button 
                     className="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-[var(--secondary-accent)] to-[var(--yellow-accent)] text-[#121212] hover:scale-105"
                     whileHover={{ scale: 1.05 }}
@@ -270,7 +258,7 @@ function LayoutContent({ children, currentPageName }) {
                 {/* Mobile Menu Button */}
                 <div className="md:hidden">
                   <motion.button
-                    className="w-12 h-12 rounded-full bg-black/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/30 transition-all duration-300"
+                    className="w-12 h-12 rounded-full glass-morphism flex items-center justify-center text-[var(--text-main)] hover:bg-[var(--background-alt)]/60 transition-all duration-300"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -292,8 +280,9 @@ function LayoutContent({ children, currentPageName }) {
           }}
           transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
           className="md:hidden overflow-hidden border-b border-[var(--glass-border)]"
+          style={{ backgroundColor: theme === 'dark' ? 'rgba(18, 18, 18, 0.95)' : 'rgba(255, 255, 255, 0.95)' }}
         >
-          <div className="px-4 py-6 space-y-4 glass-morphism">
+          <div className="px-4 py-6 space-y-4">
             {navigationItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -313,7 +302,7 @@ function LayoutContent({ children, currentPageName }) {
                     <button
                       onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
                       className={`flex items-center justify-between w-full text-base font-medium transition-colors duration-300 ${
-                        isActiveMenuItem(item.path) || (item.path === createPageUrl("About") && location.pathname.startsWith(createPageUrl("About")))
+                        isActiveMenuItem(item.path) 
                           ? 'text-[var(--primary-accent)]' 
                           : 'text-[var(--text-muted)]'
                       }`}
@@ -363,7 +352,7 @@ function LayoutContent({ children, currentPageName }) {
                 )}
               </motion.div>
             ))}
-            <Link to={createPageUrl("waitinglist")}>
+          <Link to={createPageUrl("waitinglist")}>
             <motion.div 
               className="border-t border-[var(--glass-border)] pt-6 mt-6 flex items-center justify-between"
               initial={{ opacity: 0 }}
@@ -390,7 +379,7 @@ function LayoutContent({ children, currentPageName }) {
                 </motion.button>
             </motion.div>
                     </Link>         
-          </div>
+                              </div>
         </motion.div>
       </motion.nav>
 

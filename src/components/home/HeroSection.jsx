@@ -48,7 +48,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section ref={containerRef} className="relative w-full overflow-hidden bg-[var(--background)]">
+    <section ref={containerRef} className="relative w-full overflow-hidden bg-[var(--background)] pt-20">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-96 h-96 bg-[var(--primary-accent)]/10 rounded-full blur-3xl hidden lg:block"></div>
@@ -58,19 +58,19 @@ export default function HeroSection() {
       
       {isMobile ? (
         <div className="lg:hidden relative min-h-[80vh] flex flex-col items-center justify-center py-24 px-4 text-center">
-            {/* Background Image for Mobile */}
-            <div className="absolute inset-0 z-0">
-                <img
-                    src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg"
-                    alt="Delicious food background"
-                    className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/50" />
-            </div>
+          {/* Background Image for Mobile */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg"
+              alt="Delicious food background"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/50" />
+          </div>
           <TextContent isMobileView={true} socialLinks={socialLinks} />
         </div>
       ) : (
-        <div className="hidden lg:block relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16 min-h-screen">
+        <div className="hidden lg:block relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 min-h-screen">
           <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
             <div style={{ transform: `translate(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px)` }}>
               <TextContent isMobileView={false} socialLinks={socialLinks} />
