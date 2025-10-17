@@ -30,7 +30,6 @@ export default function AppStoreButton({ variant = 'default', className = '' }) 
 
   return (
     <motion.a 
-      href="#"
       className={`${currentVariant.container} ${className}`}
       whileHover={{ scale: 1.05, y: -2 }}
       whileTap={{ scale: 0.98 }}

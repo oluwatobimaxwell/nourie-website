@@ -1,10 +1,9 @@
 
-
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import PremiumFooter from "../components/layout/PremiumFooter";
 import { ThemeProvider, useTheme } from "../components/ThemeProvider";
 
@@ -13,6 +12,7 @@ function LayoutContent({ children, currentPageName }) {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
 
   useEffect(() => {
     if (!location.hash) {
@@ -50,13 +50,23 @@ function LayoutContent({ children, currentPageName }) {
 
   const navigationItems = [
     { name: "Home", path: createPageUrl("Home") },
-    { name: "About", path: createPageUrl("About") },
+    { 
+      name: "About", 
+      path: createPageUrl("About"),
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Our Story", path: `${createPageUrl("About")}#our-story` },
+        { name: "Mission & Vision", path: `${createPageUrl("About")}#mission-vision` },
+        { name: "Our Values", path: `${createPageUrl("About")}#values` },
+        { name: "Meet Our Team", path: `${createPageUrl("About")}#team` },
+        { name: "Our Name", path: `${createPageUrl("About")}#our-name` },
+      ]
+    },
     { name: "How It Works", path: createPageUrl("HowItWorks") },
     { name: "Partnership", path: createPageUrl("CorporatePartnership") },
     { name: "Contact", path: createPageUrl("Contact") },
   ];
 
-  // Helper function to check if a menu item is active
   const isActiveMenuItem = (itemPath) => {
     if (location.pathname === "/" && itemPath === createPageUrl("Home")) {
       return true;
@@ -79,6 +89,7 @@ function LayoutContent({ children, currentPageName }) {
           --text-muted: #555555;
           --glass-bg: rgba(255, 255, 255, 0.4);
           --glass-border: rgba(53, 104, 89, 0.2);
+          --dropdown-bg: rgba(255, 255, 255, 0.98);
         }
         
         [data-theme='dark'] {
@@ -91,6 +102,7 @@ function LayoutContent({ children, currentPageName }) {
           --text-muted: #B0B0B0;
           --glass-bg: rgba(29, 29, 29, 0.4);
           --glass-border: rgba(168, 213, 186, 0.1);
+          --dropdown-bg: rgba(29, 29, 29, 0.98);
         }
         
         * {
@@ -126,7 +138,7 @@ function LayoutContent({ children, currentPageName }) {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-20">
-              {/* Left-aligned group: Logo - Always visible */}
+              {/* Logo */}
               <div className="flex items-center">
                 <Link 
                   to={createPageUrl("Home")} 
@@ -148,26 +160,77 @@ function LayoutContent({ children, currentPageName }) {
                 </Link>
               </div>
 
-              {/* Right-aligned group: Desktop Nav / Mobile Menu Button */}
+              {/* Desktop Navigation */}
               <div className="flex items-center">
                 <div className="hidden md:flex items-center space-x-8">
                   {navigationItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.path}
-                      className={`relative text-sm font-medium transition-all duration-300 group ${
-                        isActiveMenuItem(item.path) 
-                          ? 'text-[var(--primary-accent)]' 
-                          : 'text-[var(--text-muted)] hover:text-[var(--primary-accent)]'
-                      }`}
-                    >
-                      <span className="relative z-10">{item.name}</span>
-                      <div className={`absolute -bottom-1 left-0 right-0 h-0.5 transition-transform duration-300 bg-[var(--primary-accent)] ${
-                        isActiveMenuItem(item.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                      }`} />
-                    </Link>
+                    item.hasDropdown ? (
+                      <div 
+                        key={item.name}
+                        className="relative group"
+                        onMouseEnter={() => setAboutDropdownOpen(true)}
+                        onMouseLeave={() => setAboutDropdownOpen(false)}
+                      >
+                        <Link
+                          to={item.path}
+                          className={`relative text-sm font-medium transition-all duration-300 flex items-center space-x-1 ${
+                            isActiveMenuItem(item.path) 
+                              ? 'text-[var(--primary-accent)]' 
+                              : 'text-[var(--text-muted)] hover:text-[var(--primary-accent)]'
+                          }`}
+                        >
+                          <span className="relative z-10">{item.name}</span>
+                          <ChevronDown className="w-4 h-4" />
+                          <div className={`absolute -bottom-1 left-0 right-0 h-0.5 transition-transform duration-300 bg-[var(--primary-accent)] ${
+                            isActiveMenuItem(item.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                          }`} />
+                        </Link>
+                        
+                        {/* Dropdown Menu */}
+                        <AnimatePresence>
+                          {aboutDropdownOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 10 }}
+                              transition={{ duration: 0.2 }}
+                              className="absolute top-full left-0 mt-2 w-56 rounded-2xl shadow-xl py-2 border border-[var(--glass-border)]"
+                              style={{ 
+                                backgroundColor: 'var(--dropdown-bg)',
+                                backdropFilter: 'blur(20px)'
+                              }}
+                            >
+                              {item.dropdownItems.map((dropdownItem, idx) => (
+                                <Link
+                                  key={idx}
+                                  to={dropdownItem.path}
+                                  className="block px-4 py-3 text-sm text-[var(--text-muted)] hover:text-[var(--primary-accent)] hover:bg-[var(--background-alt)]/50 transition-all duration-200"
+                                >
+                                  {dropdownItem.name}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        key={item.name}
+                        to={item.path}
+                        className={`relative text-sm font-medium transition-all duration-300 group ${
+                          isActiveMenuItem(item.path) 
+                            ? 'text-[var(--primary-accent)]' 
+                            : 'text-[var(--text-muted)] hover:text-[var(--primary-accent)]'
+                        }`}
+                      >
+                        <span className="relative z-10">{item.name}</span>
+                        <div className={`absolute -bottom-1 left-0 right-0 h-0.5 transition-transform duration-300 bg-[var(--primary-accent)] ${
+                          isActiveMenuItem(item.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                        }`} />
+                      </Link>
+                    )
                   ))}
-                   <Link to={createPageUrl("waitinglist")}>
+                      <Link to={createPageUrl("waitinglist")}>
                   <motion.button 
                     className="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-[var(--secondary-accent)] to-[var(--yellow-accent)] text-[#121212] hover:scale-105"
                     whileHover={{ scale: 1.05 }}
@@ -176,8 +239,7 @@ function LayoutContent({ children, currentPageName }) {
                     
                     Join Waitlist
                   </motion.button>
-                  </Link>
-                  
+                  </Link>                  
                   <motion.button
                     onClick={toggleTheme}
                     className="p-2 rounded-full glass-morphism text-[var(--text-main)]"
@@ -188,7 +250,7 @@ function LayoutContent({ children, currentPageName }) {
                   </motion.button>
                 </div>
 
-                {/* Mobile Menu Button - visible on mobile, hidden on desktop */}
+                {/* Mobile Menu Button */}
                 <div className="md:hidden">
                   <motion.button
                     className="w-12 h-12 rounded-full bg-black/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/30 transition-all duration-300"
@@ -204,6 +266,7 @@ function LayoutContent({ children, currentPageName }) {
           </div>
         </div>
 
+        {/* Mobile Menu */}
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ 
@@ -241,7 +304,7 @@ function LayoutContent({ children, currentPageName }) {
                 </Link>
               </motion.div>
             ))}
-            <Link to={createPageUrl("waitinglist")}>
+        <Link to={createPageUrl("waitinglist")}>
             <motion.div 
               className="border-t border-[var(--glass-border)] pt-6 mt-6 flex items-center justify-between"
               initial={{ opacity: 0 }}
@@ -267,8 +330,8 @@ function LayoutContent({ children, currentPageName }) {
                   {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
                 </motion.button>
             </motion.div>
-                    </Link>
-          </div>
+                    </Link>         
+                     </div>
         </motion.div>
       </motion.nav>
 
@@ -290,4 +353,3 @@ export default function Layout({ children, currentPageName }) {
     </ThemeProvider>
   )
 }
-

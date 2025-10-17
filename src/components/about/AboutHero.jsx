@@ -1,15 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart } from 'lucide-react';
 
 export default function AboutHero() {
   return (
-    <section className="relative py-32 lg:py-48 overflow-hidden">
+    <section id="our-story" className="relative py-32 lg:py-48 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.pexels.com/photos/5737241/pexels-photo-5737241.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&dpr=2"
-          alt="Nigerian market scene"
+          src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=1920&q=80"
+          alt="Nigerian food market vibrant scene"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60"></div>

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Phone, MessageCircle, ArrowRight } from "lucide-react";
@@ -47,8 +48,8 @@ export default function Contact() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.pexels.com/photos/4467735/pexels-photo-4467735.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&dpr=2"
-            alt="Friendly support person"
+            src="https://img.freepik.com/premium-photo/happiness-pride-portrait-black-woman-desk-with-smile-computer-african-entrepreneur-with-smile-happy-face-businesswoman-office-small-business-startup-receptionist-agency_590464-197844.jpg"
+            alt="Friendly Nigerian support person"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/40" />
@@ -157,8 +158,8 @@ export default function Contact() {
               </Link>
                <Link to={createPageUrl("waitinglist")}>
               <GooglePlayButton variant="solid" />
-              </Link>
-            </div>
+              </Link>            
+              </div>
           </motion.div>
         </div>
       </section>

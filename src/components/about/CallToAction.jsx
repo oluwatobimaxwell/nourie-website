@@ -12,7 +12,7 @@ export default function CallToAction() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-20 sm:py-32 bg-[var(--background-alt)] relative overflow-hidden">
+    <section ref={ref} className="py-20 sm:py-32 bg-gradient-to-br from-[var(--background-alt)] to-[var(--background)] relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-96 h-96 bg-[var(--primary-accent)]/10 rounded-full blur-3xl"></div>
@@ -51,7 +51,7 @@ export default function CallToAction() {
               Partner With Us
             </h3>
             <p className="text-base sm:text-lg lg:text-xl text-[var(--text-muted)] leading-relaxed font-light mb-6 sm:mb-8">
-            At Nourie, we believe great partnerships create lasting impact. We collaborate with organizations, offices, and businesses to provide reliable corporate meals, event catering, subscription meal plans, and bulk orders.
+   At Nourie, we believe great partnerships create lasting impact. We collaborate with organizations, offices, and businesses to provide reliable corporate meals, event catering, subscription meal plans, and bulk orders.
             Let’s create a tailored food experience that keeps your team satisfied and productive.
             </p>
             
@@ -61,7 +61,7 @@ export default function CallToAction() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span>Partner with Nourie</span>
+                 <span>Partner with Nourie</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
             </Link>
@@ -86,13 +86,12 @@ export default function CallToAction() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to={createPageUrl("waitinglist")}>
+         <Link to={createPageUrl("waitinglist")}>
               <AppStoreButton variant="default" className="w-full sm:w-auto" />
               </Link>
                <Link to={createPageUrl("waitinglist")}>
               <GooglePlayButton variant="default" className="w-full sm:w-auto" />
-              </Link>
-            </div>
+              </Link>            </div>
           </motion.div>
         </div>
 

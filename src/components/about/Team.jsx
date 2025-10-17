@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
@@ -13,85 +14,85 @@ const teamMembers = [
     name: "Moyin Sholanke",
     role: "Co-Founder & COO",
     bio: "Operational mastermind ensuring seamless execution, from kitchen to delivery. Dedicated to efficiency and exceptional customer experience.",
-    image: "/images/team/moyin.png"
+    image: "https://ui-avatars.com/api/?name=Moyin+Sholanke&size=150&background=F9A03F&color=ffffff&rounded=true"
   },
   {
     name: "Ayo Sholanke",
     role: "Co-Founder/Kitchen Coordinator & Logistics Manager",
     bio: "Ensuring timely and accurate delivery across Abuja. Manages the operational flow for a smooth user and delivery experience.",
-    image: "/images/team/ayo.png"
+    image: "https://ui-avatars.com/api/?name=Ayo+Sholanke&size=150&background=A8D5BA&color=121212&rounded=true"
   },
   {
     name: "Omoyele Samuel",
     role: "Tech Lead & Senior Software Engineer",
     bio: "Software engineer building and maintaining Nourie's robust platform. Committed to innovative and user-friendly digital solutions.",
-    image: "/images/team/agba.png"
+    image: "https://ui-avatars.com/api/?name=Omoyele+Samuel&size=150&background=FFD166&color=121212&rounded=true"
   },
   {
     name: "Otitolaye Samuel",
     role: "Admin & HR Manager",
     bio: "Fostering a positive workplace culture and managing the administrative heartbeat of our operations.",
-    image: "/images/team/sam.jpeg"
+    image: "https://ui-avatars.com/api/?name=Otitolaye+Samuel&size=150&background=356859&color=ffffff&rounded=true"
   },
   {
     name: "Adediji Oluwashina",
     role: "Marketing & Sales Lead",
     bio: "Growth strategist connecting Nourie with the community. Expert in building brand awareness and fostering lasting customer relationships.",
-    image: "/images/team/shina.jpeg"
+    image: "https://ui-avatars.com/api/?name=Adediji+Oluwashina&size=150&background=F9A03F&color=ffffff&rounded=true"
   },
   {
     name: "Agbo George",
     role: "Head Chef",
     bio: "Culinary artist crafting every dish with passion and precision. Brings authentic Nigerian flavors to life, ensuring quality and deliciousness.",
-    image: "/images/team/chef.png"
+    image: "https://ui-avatars.com/api/?name=Agbo+George&size=150&background=A8D5BA&color=121212&rounded=true"
   },
   {
     name: "Emmanuel Olobayo",
     role: "Customer Support Officer",
     bio: "The friendly voice of Nourie, ensuring every customer feels heard, valued, and supported.",
-    image: "/images/team/emma.png"
+    image: "https://ui-avatars.com/api/?name=Emmanuel+Olobayo&size=150&background=FFD166&color=121212&rounded=true"
   },
   {
     name: "Adenike Mogbojuri",
     role: "Content Creator & Social Media Manager",
     bio: "Crafting Nourie's story and engaging our community across all social platforms with compelling content.",
-    image: "/images/team/nike.JPG"
+    image: "https://ui-avatars.com/api/?name=Adenike+Mogbojuri&size=150&background=356859&color=ffffff&rounded=true"
   },
   {
     name: "Favour Udelue",
     role: "Digital Marketing Specialist",
     bio: "Driving online growth through strategic digital marketing campaigns and online presence optimization.",
-    image: "/images/team/favour.jpg"
+    image: "https://ui-avatars.com/api/?name=Favour+Udelue&size=150&background=F9A03F&color=ffffff&rounded=true"
   },
   {
     name: "Emeka Ezeliora",
     role: "FullStack Dev Intern",
     bio: "Bringing fresh ideas and coding skills to help build and refine the Nourie app experience.",
-    image: "/images/team/emeka.png"
+    image: "https://ui-avatars.com/api/?name=Emeka+Ezeliora&size=150&background=A8D5BA&color=121212&rounded=true"
   },
   {
     name: "Boluwatife Ogundiran",
     role: "FullStack Dev Intern",
     bio: "A budding developer contributing to the robustness and functionality of our digital platform.",
-    image: "/images/team/bolu.jpg"
+    image: "https://ui-avatars.com/api/?name=Boluwatife+Ogundiran&size=150&background=FFD166&color=121212&rounded=true"
   },
   {
-    name: "Blessed-Agboola Jemimah",
+    name: "Jesujoba Jemimah",
     role: "FullStack Dev Intern",
     bio: "Supporting our tech team with enthusiasm and a drive to build great software solutions.",
-    image: "/images/team/joba.jpeg"
+    image: "https://ui-avatars.com/api/?name=Jesujoba+Jemimah&size=150&background=356859&color=ffffff&rounded=true"
   },
   {
     name: "Unwaba Maria",
     role: "Cleaner / Kitchen Assistant",
     bio: "Maintaining a pristine and hygienic kitchen environment, the foundation of our food quality promise.",
-    image: "/images/team/maria2.png"
+    image: "https://ui-avatars.com/api/?name=Unwaba+Maria&size=150&background=F9A03F&color=ffffff&rounded=true"
   },
   {
     name: "Yakubu Numshi Yohanna",
     role: "Operations Support Assistant",
     bio: "The backbone of our operations, providing critical support to ensure everything runs smoothly from kitchen to customer.",
-    image: "/images/team/yak.png"
+    image: "https://ui-avatars.com/api/?name=Yakubu+Yohanna&size=150&background=A8D5BA&color=121212&rounded=true"
   },
 ];
 
@@ -100,8 +101,15 @@ export default function Team() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-32 bg-[var(--background)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="team" ref={ref} className="py-32 bg-[var(--background)] relative overflow-hidden">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute inset-0" style={{ 
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD166' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }} />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -129,7 +137,7 @@ export default function Team() {
                 <motion.img
                   src={member.image}
                   alt={member.name}
-                  className="w-40 h-40 rounded-full object-cover object-top border-4 border-[var(--glass-border)]"
+                  className="w-40 h-40 rounded-full object-cover border-4 border-[var(--glass-border)]"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 />

@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Target, Eye, Rocket } from 'lucide-react';
@@ -7,7 +8,7 @@ export default function MissionVision() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-32 bg-[var(--background)]">
+    <section id="mission-vision" ref={ref} className="py-32 bg-[var(--background-alt)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
