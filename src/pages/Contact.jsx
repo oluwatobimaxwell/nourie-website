@@ -117,7 +117,7 @@ export default function Contact() {
               description="Get instant answers and quick support directly on WhatsApp. Perfect for urgent questions or real-time assistance."
               action="Start Chat"
               bgGradient="bg-gradient-to-br from-[#25D366] to-[#128C7E]"
-              href="https://wa.me/2348124001495"
+              href="https://wa.me/2347044487002"
             />
             
             <QuickContactCard
