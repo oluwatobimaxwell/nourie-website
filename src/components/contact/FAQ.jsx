@@ -16,25 +16,30 @@ const faqs = [
     answer: "We currently deliver to Wuse II, Maitama, Garki, and surrounding areas. We are constantly expanding our delivery zones, so please check the app for the most up-to-date service areas."
   },
   {
-    question: "Can I customize my order or make special requests?",
+    question: "Can I customize my order?",
     answer: "Yes, you can specify dietary restrictions or add notes to your order during checkout. For major customizations, please contact our support team, and we will do our best to accommodate your needs."
-  },
-  {
-    question: "What is your refund policy?",
-    answer: "We offer full refunds for pre-orders cancelled at least 2 hours before the scheduled delivery time. For issues with food quality or incorrect orders, please contact our support team immediately with a photo, and we will provide a refund or credit on a case-by-case basis."
   }
 ];
 
 const FAQItem = ({ faq, isOpen, onClick }) => (
-  <div className="border-b border-[var(--glass-border)]">
+  <motion.div 
+    className="border-b border-[var(--glass-border)] last:border-b-0"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true }}
+  >
     <button
-      className="w-full flex justify-between items-center text-left py-6"
+      className="w-full flex justify-between items-center text-left py-6 group"
       onClick={onClick}
     >
-      <h3 className="text-xl font-medium text-[var(--text-main)]">{faq.question}</h3>
+      <h3 className="text-lg md:text-xl font-medium text-[var(--text-main)] group-hover:text-[var(--primary-accent)] transition-colors pr-4">
+        {faq.question}
+      </h3>
       <motion.div
         animate={{ rotate: isOpen ? 180 : 0 }}
         transition={{ duration: 0.3 }}
+        className="flex-shrink-0"
       >
         <ChevronDown className="w-6 h-6 text-[var(--primary-accent)]" />
       </motion.div>
@@ -48,11 +53,13 @@ const FAQItem = ({ faq, isOpen, onClick }) => (
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="overflow-hidden"
         >
-          <p className="pb-6 text-lg text-[var(--text-muted)] leading-relaxed">{faq.answer}</p>
+          <p className="pb-6 text-base md:text-lg text-[var(--text-muted)] leading-relaxed">
+            {faq.answer}
+          </p>
         </motion.div>
       )}
     </AnimatePresence>
-  </div>
+  </motion.div>
 );
 
 export default function FAQ() {
@@ -63,24 +70,24 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-24 bg-[var(--background)]">
+    <section className="py-24 bg-[var(--background-alt)]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-[var(--text-main)] mb-4">
-            Frequently Asked Questions
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-main)] mb-4">
+            Quick <span className="gradient-text">Answers</span>
           </h2>
-          <p className="text-xl text-[var(--text-muted)]">
-            Find quick answers to common questions below.
+          <p className="text-lg text-[var(--text-muted)]">
+            Find answers to commonly asked questions
           </p>
         </motion.div>
 
-        <div>
+        <div className="glass-morphism rounded-3xl p-8 md:p-12">
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}

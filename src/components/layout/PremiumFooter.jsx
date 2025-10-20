@@ -1,30 +1,21 @@
 
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { 
-  ArrowUpRight, 
-  MapPin, 
-  Phone, 
-  Mail, 
   Instagram, 
   Twitter, 
   Linkedin,
   Facebook,
-  Apple,
-  Play,
 } from 'lucide-react';
 
 export default function PremiumFooter() {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-10%" });
-
-  const navigationLinks = [
+  const companyLinks = [
     { name: "Home", path: createPageUrl("Home") },
     { name: "About", path: createPageUrl("About") },
     { name: "How It Works", path: createPageUrl("HowItWorks") },
-    { name: "Contact", path: createPageUrl("Contact") },
+    { name: "Partnership", path: createPageUrl("CorporatePartnership") },
   ];
 
   const supportLinks = [
@@ -62,7 +53,7 @@ export default function PremiumFooter() {
   ];
 
   return (
-    <footer ref={containerRef} className="relative bg-[var(--background-alt)] text-[var(--text-main)] overflow-hidden">
+    <footer className="relative bg-[var(--background-alt)] text-[var(--text-main)] overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{ 
@@ -81,41 +72,44 @@ export default function PremiumFooter() {
         <div className="py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-16">
             
-            {/* Brand Info */}
+            {/* Brand Identity & Mission */}
             <div className="lg:col-span-2">
               <Link to={createPageUrl("Home")} className="block mb-6">
                 <div className="flex items-center space-x-3">
-                    <img 
-                      src="https://boolean-bucket.nyc3.cdn.digitaloceanspaces.com/nourie/NOURIE%20LOGO.png" 
-                      alt="Nourie Logo" 
-                      className="h-12 hidden dark:block" 
-                    />
-                    <img 
-                      src="https://boolean-bucket.nyc3.cdn.digitaloceanspaces.com/nourie/NOURIE%20LOGO.png" 
-                      alt="Nourie Logo" 
-                      className="h-12 dark:hidden" 
-                    />
-                    <span className="text-2xl font-bold text-[var(--primary-accent)]">Nourie</span>
+                  <img 
+                    src="https://boolean-bucket.nyc3.cdn.digitaloceanspaces.com/nourie/NOURIE%20LOGO.png" 
+                    alt="Nourie Logo" 
+                    className="h-12 hidden dark:block" 
+                  />
+                  <img 
+                    src="https://boolean-bucket.nyc3.cdn.digitaloceanspaces.com/nourie/NOURIE%20LOGO.png" 
+                    alt="Nourie Logo" 
+                    className="h-12 dark:hidden" 
+                  />
+                  <span className="text-2xl font-bold text-[var(--text-main)]">Nourie</span>
                 </div>
               </Link>
-              <p className="text-[var(--text-muted)] max-w-sm leading-relaxed mb-8">
-                Food that brings joy. Nigeria's leading mobile-first food platform, making quality meals accessible to everyone.
-              </p>
               
-              {/* Contact Info */}
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3 text-[var(--text-muted)]">
-                  <MapPin className="w-4 h-4 text-[var(--primary-accent)]" />
-                  <span>Wuse II, Abuja, FCT Nigeria</span>
-                </div>
-                <div className="flex items-center space-x-3 text-[var(--text-muted)]">
-                  <Phone className="w-4 h-4 text-[var(--primary-accent)]" />
-                  <span>+234 704 448 7002</span>
-                </div>
-                <div className="flex items-center space-x-3 text-[var(--text-muted)]">
-                  <Mail className="w-4 h-4 text-[var(--primary-accent)]" />
-                  <span>hello@eatnourie.com</span>
-                </div>
+              <p className="text-2xl font-light text-[var(--text-main)] mb-8 italic">
+                Eat with us.
+              </p>
+
+              {/* Social Media Links */}
+              <div className="flex items-center space-x-4">
+                {socialLinks.map((social) => (
+                  <motion.a 
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-10 h-10 rounded-full glass-morphism flex items-center justify-center text-[var(--text-muted)] transition-colors duration-300 ${social.hoverColor}`}
+                    whileHover={{ y: -3, scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label={social.name}
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </motion.a>
+                ))}
               </div>
             </div>
 
@@ -123,7 +117,7 @@ export default function PremiumFooter() {
             <div>
               <h4 className="font-semibold text-lg mb-6 text-[var(--text-main)]">Company</h4>
               <ul className="space-y-4">
-                {navigationLinks.map((link) => (
+                {companyLinks.map((link) => (
                   <li key={link.name}>
                     <Link
                       to={link.path}
@@ -155,34 +149,54 @@ export default function PremiumFooter() {
               </ul>
             </div>
 
-            {/* Download App */}
+            {/* Get Started */}
             <div>
-              <h4 className="font-semibold text-lg mb-6 text-[var(--text-main)]">Get The App</h4>
-              <div className="space-y-4">
-              <Link to={createPageUrl("waitinglist")}
-              className="group w-full glass-morphism text-[var(--text-main)] px-4 py-3 rounded-xl font-medium flex items-center space-x-3 hover:bg-[var(--background-alt)]/60 transition-all duration-300">
-                <motion.div 
-                  className="flex items-center space-x-3"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
+              <h4 className="font-semibold text-lg mb-6 text-[var(--text-main)]">Get Started</h4>
+              <div className="flex flex-col space-y-4">
+                <Link
+                  to={createPageUrl("WaitingList")}
+                  className="block text-[var(--text-muted)] hover:text-[var(--primary-accent)] transition-colors duration-300 font-medium"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 >
-                  <Apple className="w-5 h-5" />
-
-                  <span>iOS App</span>
-                 
-                </motion.div>
-              </Link>
-              <Link to={createPageUrl("waitinglist")}
-              className="group w-full glass-morphism text-[var(--text-main)] px-4 py-3 rounded-xl font-medium flex items-center space-x-3 hover:bg-[var(--background-alt)]/60 transition-all duration-300">
-                <motion.div 
-                  className="flex items-center space-x-3"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Play className="w-5 h-5" />
-                  <span>Android App</span>
-                </motion.div>
-                   </Link>
+                  Join Waitlist
+                </Link>
+                
+                <Link to={createPageUrl("WaitingList")}>
+                  <motion.div 
+                    className="group w-full glass-morphism px-4 py-2.5 rounded-xl flex items-center space-x-3 hover:bg-[var(--background-alt)]/60 transition-all duration-300 cursor-pointer"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" fill="currentColor"/>
+                    </svg>
+                    <div className="text-left">
+                      <p className="text-xs text-[var(--text-muted)]">Download on the</p>
+                      <p className="text-sm font-semibold text-[var(--text-main)]">App Store</p>
+                    </div>
+                  </motion.div>
+                </Link>
+                
+                <Link to={createPageUrl("WaitingList")}>
+                  <motion.div 
+                    className="group w-full glass-morphism px-4 py-2.5 rounded-xl flex items-center space-x-3 hover:bg-[var(--background-alt)]/60 transition-all duration-300 cursor-pointer"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.609 1.814L13.792 12.01L3.61 22.186C3.483 22.284 3.324 22.33 3.164 22.316C2.868 22.291 2.636 22.046 2.61 21.75V2.734C2.593 2.42 2.82 2.155 3.133 2.124C3.298 2.105 3.46 2.155 3.58 2.26L3.609 1.814Z" fill="#32BBFF"/>
+                      <path d="M20.415 10.262L18.153 8.982L13.793 12.008L18.153 15.035L20.415 13.755C21.055 13.395 21.055 12.441 20.415 12.081V12.081L20.415 10.262Z" fill="#FFC932"/>
+                      <path d="M18.153 15.035L13.793 12.009L3.61 22.186C3.903 22.423 4.316 22.373 4.549 22.125L18.153 9.619V15.035Z" fill="#00E57C"/>
+                      <path d="M18.153 8.982L4.549 1.875C4.316 1.627 3.903 1.577 3.61 1.814L13.793 12.008L18.153 8.982Z" fill="#FF3B5D"/>
+                    </svg>
+                    <div className="text-left">
+                      <p className="text-xs text-[var(--text-muted)]">Get it on</p>
+                      <p className="text-sm font-semibold text-[var(--text-main)]">Google Play</p>
+                    </div>
+                  </motion.div>
+                </Link>
               </div>
             </div>
 
@@ -191,26 +205,11 @@ export default function PremiumFooter() {
 
         {/* Bottom Section */}
         <div className="border-t border-[var(--glass-border)] py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-center space-y-6 md:space-y-0">
+          <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0">
             {/* Copyright */}
-            <p className="text-sm text-[var(--text-muted)]">&copy; {new Date().getFullYear()} Nourie. All Rights Reserved.</p>
-
-            {/* Social Links */}
-            <div className="flex items-center space-x-6">
-              {socialLinks.map((social) => (
-                <motion.a 
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-[var(--text-muted)] transition-colors duration-300 ${social.hoverColor}`}
-                  whileHover={{ y: -3, scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
-              ))}
-            </div>
+            <p className="text-sm text-[var(--text-muted)]">
+              &copy; {new Date().getFullYear()} Nourie. All Rights Reserved.
+            </p>
 
             {/* Brand tagline */}
             <div className="text-sm text-[var(--text-muted)]">

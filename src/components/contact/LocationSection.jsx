@@ -3,9 +3,6 @@ import { motion } from 'framer-motion';
 import { MapPin, Clock, Phone, Mail } from 'lucide-react';
 
 export default function LocationSection() {
-  // Coordinates for Wuse II, Abuja
-  const position = { lat: 9.0765, lng: 7.4951 };
-
   const contactDetails = [
     {
       icon: MapPin,
@@ -22,7 +19,7 @@ export default function LocationSection() {
     {
       icon: Phone,
       label: "Phone",
-      value: "+234 704 448 7002",
+      value: "++234 704 448 7002",
       subtitle: "WhatsApp available"
     },
     {
@@ -39,31 +36,27 @@ export default function LocationSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-[var(--text-main)] mb-4">
-            Visit Our <span className="gradient-text">Kitchen</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-main)] mb-4">
+            Find Us in <span className="gradient-text">Abuja</span>
           </h2>
-          <p className="text-xl text-[var(--text-muted)] max-w-2xl mx-auto">
-            Located in the heart of Abuja, our kitchen is where the magic happens.
-          </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Google Maps Section */}
+          {/* Google Maps */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative"
           >
-            <div className="glass-morphism p-4 rounded-3xl overflow-hidden">
-              <div className="h-96 rounded-2xl overflow-hidden">
+            <div className="glass-morphism p-4 rounded-3xl overflow-hidden h-full">
+              <div className="h-[450px] rounded-2xl overflow-hidden">
                 <iframe
-                  src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.9661834665507!2d7.492631614770145!3d9.076494793443907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0ba8c2b4c3a1%3A0x4c6a4fe73a7e7e3e!2sBangui%20St%2C%20Wuse%20II%2C%20Abuja%2C%20FCT%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus`}
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.9661834665507!2d7.492631614770145!3d9.076494793443907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0ba8c2b4c3a1%3A0x4c6a4fe73a7e7e3e!2sBangui%20St%2C%20Wuse%20II%2C%20Abuja%2C%20FCT%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
                   width="100%"
                   height="100%"
                   style={{ border: 0, borderRadius: '1rem' }}
@@ -74,68 +67,35 @@ export default function LocationSection() {
                 ></iframe>
               </div>
             </div>
-            
-            {/* Floating Address Card */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="absolute -bottom-6 -right-6 glass-morphism p-6 rounded-2xl max-w-xs"
-            >
-              <div className="flex items-start space-x-3">
-                <div className="w-10 h-10 bg-[var(--primary-accent)]/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-[var(--primary-accent)]" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-[var(--text-main)] mb-1">Nourie Kitchen</h4>
-                  <p className="text-sm text-[var(--text-muted)]">Bangui Street, Wuse II</p>
-                  <p className="text-sm text-[var(--text-muted)]">Abuja, FCT</p>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Contact Details */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6"
           >
-            <div>
-              <h3 className="text-3xl font-bold text-[var(--text-main)] mb-6">
-                Come Say Hello
-              </h3>
-              <p className="text-lg text-[var(--text-muted)] leading-relaxed mb-8">
-                Located in the bustling heart of Wuse II, our kitchen is where fresh ingredients 
-                meet culinary passion. Whether you're picking up an order or just want to 
-                experience the Nourie atmosphere, we'd love to welcome you.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {contactDetails.map((detail, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 * index }}
-                  viewport={{ once: true }}
-                  className="flex items-start space-x-4 p-6 glass-morphism rounded-2xl hover:bg-[var(--background-alt)]/60 transition-colors duration-300"
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-[var(--primary-accent)]/20 to-[var(--primary-accent)]/5 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <detail.icon className="w-6 h-6 text-[var(--primary-accent)]" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-[var(--primary-accent)] mb-1">{detail.label}</p>
-                    <p className="text-lg font-semibold text-[var(--text-main)] mb-1">{detail.value}</p>
-                    <p className="text-sm text-[var(--text-muted)]">{detail.subtitle}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            {contactDetails.map((detail, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="flex items-start space-x-4 p-6 glass-morphism rounded-2xl hover:bg-[var(--background-alt)]/60 transition-colors duration-300"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-[var(--primary-accent)]/20 to-[var(--primary-accent)]/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <detail.icon className="w-6 h-6 text-[var(--primary-accent)]" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-[var(--primary-accent)] mb-1">{detail.label}</p>
+                  <p className="text-lg font-semibold text-[var(--text-main)] mb-1">{detail.value}</p>
+                  <p className="text-sm text-[var(--text-muted)]">{detail.subtitle}</p>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>

@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { useMutation } from "@tanstack/react-query";
 import { submitWaitlist } from "../api/waitlist";
+
 import { 
   Sparkles, 
   Gift, 
@@ -40,7 +41,6 @@ export default function WaitingList() {
       setIsSubmitted(true);
     },
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -50,7 +50,6 @@ export default function WaitingList() {
     e.preventDefault();
     mutate(formData);
   };
-
   const benefits = [
     {
       icon: Gift,
@@ -65,18 +64,18 @@ export default function WaitingList() {
     {
       icon: Bell,
       title: "Early Updates",
-      description: "Receive insider updates about our launch timeline and features"
+      description: "Receive insider updates about our launch timeline"
     },
     {
       icon: Sparkles,
-      title: "Beta Testing Opportunity",
-      description: "Chance to test the app and shape its features before launch"
+      title: "Shape Our Future",
+      description: "Get a chance to test and influence our features"
     }
   ];
 
   if (isSubmitted) {
     return (
-      <div ref={confirmationRef} className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4 py-20">
+      <div ref={confirmationRef}  className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4 py-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -84,21 +83,24 @@ export default function WaitingList() {
           className="max-w-2xl w-full text-center"
         >
           <div className="glass-morphism p-12 rounded-3xl">
-            <div className="w-24 h-24 bg-gradient-to-br from-[var(--primary-accent)] to-[var(--secondary-accent)] rounded-full flex items-center justify-center mx-auto mb-8">
-              <CheckCircle className="w-12 h-12 text-white" />
+            <div className="w-24 h-24 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-full flex items-center justify-center mx-auto mb-8">
+              <CheckCircle className="w-12 h-12 text-green-500" />
             </div>
             <h2 className="text-4xl font-bold text-[var(--text-main)] mb-4">
               You're On The List!
             </h2>
-            <p className="text-[var(--text-muted)] text-xl leading-relaxed mb-8">
-              Welcome to the Nourie family! We'll notify you as soon as we launch. 
-              Get ready for an amazing food experience.
+            <p className="text-[var(--text-main)] text-xl font-medium mb-2">
+              Welcome to the Nourie Family!
+            </p>
+            <p className="text-[var(--text-muted)] text-lg leading-relaxed mb-8">
+              Thanks for joining our waiting list. We'll keep you updated on our launch progress and send you your exclusive 
+              early-bird discount code soon. Get ready for an amazing food experience!
             </p>
             <div className="bg-[var(--primary-accent)]/10 border border-[var(--primary-accent)]/20 rounded-2xl p-6 mb-8">
               <p className="text-[var(--text-main)] font-medium mb-2">What's Next?</p>
               <p className="text-[var(--text-muted)]">
-                Thanks for joining. We'll keep you updated on our launch progress 
-                and send you your exclusive early-bird discount code soon!
+                Stay tuned for exclusive updates, early access opportunities, and your special 
+                launch discount. The culinary revolution is coming to Abuja!
               </p>
             </div>
             <a
@@ -116,19 +118,19 @@ export default function WaitingList() {
   return (
     <div className="bg-[var(--background)] text-[var(--text-main)] min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-32 lg:py-48 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1920&q=80"
+            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80"
             alt="Delicious food preparation"
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)] via-[var(--background)]/95 to-[var(--background)]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-[var(--background)]"></div>
         </div>
 
         {/* Floating Elements */}
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-20 w-96 h-96 bg-[var(--primary-accent)]/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-[var(--secondary-accent)]/10 rounded-full blur-3xl"></div>
         </div>
@@ -143,14 +145,14 @@ export default function WaitingList() {
               🎉 Coming Soon to Abuja
             </div>
             
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              The Future of Food <br />
-              <span className="gradient-text">Starts Here</span>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white">
+              Unlock the Taste <br />
+              <span className="gradient-text">of Tomorrow</span>
             </h1>
             
-            <p className="text-xl sm:text-2xl text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed font-light mb-12">
-              Nourie is revolutionizing how Nigeria experiences food. Join our waiting list 
-              to be first in line when we launch and unlock exclusive early-bird benefits.
+            <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed font-light mb-12">
+              Join our exclusive waitlist to be among the first to savor Abuja's culinary revolution. 
+              Priority access, special discounts, and early updates await.
             </p>
 
             {/* Stats */}
@@ -158,19 +160,19 @@ export default function WaitingList() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-wrap justify-center gap-8 sm:gap-12 mb-16"
+              className="flex flex-wrap justify-center gap-8 sm:gap-12"
             >
               <div>
                 <div className="text-4xl sm:text-5xl font-bold gradient-text mb-2">500+</div>
-                <div className="text-[var(--text-muted)] text-sm sm:text-base">Already Waiting</div>
+                <div className="text-gray-300 text-sm sm:text-base">Already Waiting</div>
               </div>
               <div>
                 <div className="text-4xl sm:text-5xl font-bold gradient-text mb-2">30%</div>
-                <div className="text-[var(--text-muted)] text-sm sm:text-base">Launch Discount</div>
+                <div className="text-gray-300 text-sm sm:text-base">Launch Discount</div>
               </div>
               <div>
                 <div className="text-4xl sm:text-5xl font-bold gradient-text mb-2">24/7</div>
-                <div className="text-[var(--text-muted)] text-sm sm:text-base">Service Soon</div>
+                <div className="text-gray-300 text-sm sm:text-base">Service Soon</div>
               </div>
             </motion.div>
           </motion.div>
@@ -178,18 +180,21 @@ export default function WaitingList() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-16 bg-[var(--background-alt)]">
+      <section className="py-20 bg-[var(--background-alt)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-main)] mb-4">
-              Why Join Our <span className="gradient-text">Waiting List?</span>
+              Why Be a <span className="gradient-text">Nourie Pioneer?</span>
             </h2>
+            <p className="text-lg text-[var(--text-muted)] max-w-2xl mx-auto">
+              Early adopters get exclusive perks that make the wait worthwhile
+            </p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -200,13 +205,13 @@ export default function WaitingList() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="glass-morphism p-6 rounded-2xl text-center hover:bg-[var(--background)]/60 transition-all duration-300"
+                className="glass-morphism p-6 rounded-2xl text-center hover:bg-[var(--background)]/60 transition-all duration-300 group"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-[var(--primary-accent)]/20 to-[var(--secondary-accent)]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-[var(--primary-accent)]/20 to-[var(--secondary-accent)]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                   <benefit.icon className="w-8 h-8 text-[var(--primary-accent)]" />
                 </div>
                 <h3 className="text-lg font-semibold text-[var(--text-main)] mb-2">{benefit.title}</h3>
-                <p className="text-[var(--text-muted)] text-sm">{benefit.description}</p>
+                <p className="text-[var(--text-muted)] text-sm leading-relaxed">{benefit.description}</p>
               </motion.div>
             ))}
           </div>
@@ -214,7 +219,7 @@ export default function WaitingList() {
       </section>
 
       {/* Form Section */}
-      <section className="py-20">
+      <section className="py-24 bg-[var(--background)]">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -224,29 +229,31 @@ export default function WaitingList() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-main)] mb-4">
-              Reserve Your <span className="gradient-text">Spot</span>
+              Reserve Your Spot.
+              <br />
+              <span className="gradient-text">Be Part of the Movement.</span>
             </h2>
             <p className="text-lg text-[var(--text-muted)]">
-              Join hundreds of food lovers waiting for Nourie to launch
+              We're excited to have you! Fill out the form below to secure your place.
             </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
             <form onSubmit={handleSubmit} className="glass-morphism p-8 lg:p-12 rounded-3xl">
               {isError && (
                 <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-sm">
-                    {error?.message || "Something went wrong. Please try again."}
+                  {error}
                 </div>
               )}
 
-              <div className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 {/* Full Name */}
-                <div>
+                <div className="md:col-span-2">
                   <label className="flex items-center space-x-2 text-[var(--text-main)] font-medium mb-3">
                     <User className="w-4 h-4 text-[var(--primary-accent)]" />
                     <span>Full Name *</span>
@@ -300,7 +307,7 @@ export default function WaitingList() {
                 <div>
                   <label className="flex items-center space-x-2 text-[var(--text-main)] font-medium mb-3">
                     <MapPin className="w-4 h-4 text-[var(--primary-accent)]" />
-                    <span>Location in Abuja (Optional)</span>
+                    <span>Location (Optional)</span>
                   </label>
                   <input
                     type="text"
@@ -316,7 +323,7 @@ export default function WaitingList() {
                 <div>
                   <label className="flex items-center space-x-2 text-[var(--text-main)] font-medium mb-3">
                     <Sparkles className="w-4 h-4 text-[var(--primary-accent)]" />
-                    <span>I'm Most Interested In *</span>
+                    <span>I'm Interested In *</span>
                   </label>
                   <select
                     name="service_interest"
@@ -337,7 +344,7 @@ export default function WaitingList() {
               <button
                 type="submit"
                 disabled={isPending}
-                className="w-full mt-8 px-8 py-4 rounded-full font-semibold text-lg bg-gradient-to-r from-[var(--primary-accent)] to-[#356859] text-white hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3"
+                className="w-full mt-8 px-8 py-4 rounded-full font-semibold text-lg bg-gradient-to-r from-[var(--primary-accent)] to-[#356859] text-white hover:scale-[1.02] transition-all duration-300 shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3"
               >
                 {isPending ? (
                   <>
@@ -353,7 +360,8 @@ export default function WaitingList() {
               </button>
 
               <p className="text-[var(--text-muted)] text-sm text-center mt-6">
-                By joining, you agree to receive updates about Nourie's launch. We respect your privacy and won't spam you.
+                By joining, you agree to receive updates about Nourie's launch. 
+                We respect your privacy and won't spam you.
               </p>
             </form>
           </motion.div>

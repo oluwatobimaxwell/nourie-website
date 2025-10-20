@@ -76,7 +76,7 @@ export default function CorporatePartnershipCTA() {
           >
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="https://img.freepik.com/free-photo/people-office-work-day_23-2150690152.jpg"
+                src="https://images.unsplash.com/photo-1528605105345-5344ea20e269?w=800&q=80"
                 alt="African corporate team dining"
                 className="w-full h-full object-cover"
               />
