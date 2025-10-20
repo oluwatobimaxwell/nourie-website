@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { useMutation } from "@tanstack/react-query";
@@ -26,6 +26,13 @@ export default function WaitingList() {
   });
   
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const confirmationRef = useRef(null);
+
+  useEffect(() => {
+  if (isSubmitted && confirmationRef.current) {
+    confirmationRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+}, [isSubmitted]);
 
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: submitWaitlist,
@@ -69,7 +76,7 @@ export default function WaitingList() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4 py-20">
+      <div ref={confirmationRef} className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4 py-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}

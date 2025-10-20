@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Building2, Users, Mail, Phone, MapPin, MessageSquare, Send, CheckCircle } from "lucide-react";
 import { base44 } from "@/api/base44Client";
@@ -16,8 +16,17 @@ export default function PartnershipForm() {
     service_interest: "",
     additional_info: ""
   });
+
+  const confirmRef = useRef(null)
   
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+  if (isSubmitted && confirmRef.current) {
+    confirmRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+}, [isSubmitted]);
+
 
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: submitPartnership,
@@ -39,7 +48,7 @@ export default function PartnershipForm() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4">
+      <div ref={confirmRef} className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
