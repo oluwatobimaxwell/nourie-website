@@ -339,6 +339,7 @@ function LayoutContent({ children, currentPageName }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: mobileMenuOpen ? 1 : 0 }}
               transition={{ delay: mobileMenuOpen ? 0.6 : 0 }}
+              onClick={() => setMobileMenuOpen(false)}
             >
 
               <motion.button 
