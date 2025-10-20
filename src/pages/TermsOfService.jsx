@@ -40,7 +40,7 @@ export default function TermsOfService() {
             <p className="text-xl text-[var(--text-muted)] max-w-2xl mx-auto">
               The guidelines that ensure a great experience for everyone in the Nourie community.
             </p>
-            <p className="text-sm text-[var(--text-muted)]/70 mt-6">Last updated: January 1, 2025</p>
+            <p className="text-sm text-[var(--text-muted)]/70 mt-6">Last updated: October 1, 2025</p>
           </motion.div>
         </div>
       </section>
