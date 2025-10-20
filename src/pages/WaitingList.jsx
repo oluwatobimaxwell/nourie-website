@@ -90,7 +90,7 @@ export default function WaitingList() {
             <div className="bg-[var(--primary-accent)]/10 border border-[var(--primary-accent)]/20 rounded-2xl p-6 mb-8">
               <p className="text-[var(--text-main)] font-medium mb-2">What's Next?</p>
               <p className="text-[var(--text-muted)]">
-                Check your email for a confirmation message. We'll keep you updated on our launch progress 
+                Thanks for joining. We'll keep you updated on our launch progress 
                 and send you your exclusive early-bird discount code soon!
               </p>
             </div>
