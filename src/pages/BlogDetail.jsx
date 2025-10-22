@@ -484,7 +484,7 @@ export default function BlogDetail() {
       )}
 
       <div className="hidden lg:block">
-        <FloatingShareButtons title={currentPost.title} />
+        <FloatingShareButtons title={currentPost.title} slug={slug} />
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -499,7 +499,7 @@ export default function BlogDetail() {
 
         <div className="lg:hidden mt-12">
           <div className="flex items-center justify-center space-x-4 py-8 border-y border-[var(--glass-border)]">
-            <FloatingShareButtons title={currentPost.title} inline />
+            <FloatingShareButtons title={currentPost.title} slug={slug} inline />
           </div>
         </div>
 

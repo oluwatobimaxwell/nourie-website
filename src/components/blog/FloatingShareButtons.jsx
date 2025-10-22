@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Facebook, Twitter, Linkedin, Link as LinkIcon, Check } from 'lucide-react';
 
-export default function FloatingShareButtons({ title, inline = false }) {
+export default function FloatingShareButtons({ title, slug, inline = false }) {
   const [copied, setCopied] = useState(false);
-  const url = window.location.href;
+  const url = `https://blog.eatnourie.com/${slug}`;
 
   const shareLinks = [
     {
