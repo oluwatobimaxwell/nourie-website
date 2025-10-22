@@ -1,8 +1,12 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { User } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { User } from "lucide-react";
 
-export default function AuthorBio({ author }) {
+export default function AuthorBio({
+  author,
+  author_image,
+  author_bio = "Part of the Nourie team, passionate about bringing you stories that celebrate food, community, and the joy of a good meal.",
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -19,9 +23,7 @@ export default function AuthorBio({ author }) {
           <h4 className="text-xl font-bold text-[var(--text-main)] mb-2">
             Written by {author}
           </h4>
-          <p className="text-[var(--text-muted)] leading-relaxed">
-            Part of the Nourie team, passionate about bringing you stories that celebrate food, community, and the joy of a good meal.
-          </p>
+          <p className="text-[var(--text-muted)] leading-relaxed" dangerouslySetInnerHTML={{ __html: author_bio }} />
         </div>
       </div>
     </motion.div>

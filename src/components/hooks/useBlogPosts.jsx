@@ -7,6 +7,8 @@ const mapApiPostToBlogPost = (apiPost) => {
     title: apiPost.title,
     slug: apiPost.slug,
     author: apiPost.author?.name || "Nourie Team",
+    author_image: apiPost.author?.image_url,
+    author_bio: apiPost.author?.bio,
     publication_date: apiPost.date,
     featured_image: 
       apiPost.gallery_images && apiPost.gallery_images.length > 0 

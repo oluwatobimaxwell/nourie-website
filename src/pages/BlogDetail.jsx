@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, User, ArrowLeft } from "lucide-react";
 import { format } from "date-fns";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import FloatingShareButtons from "../components/blog/FloatingShareButtons";
 import RelatedPosts from "../components/blog/RelatedPosts";
@@ -13,13 +13,11 @@ import { useBlogPost, useBlogPosts } from "../components/hooks/useBlogPosts";
 export default function BlogDetail() {
   const [readingProgress, setReadingProgress] = useState(0);
   const [showBackButton, setShowBackButton] = useState(false);
-  
-  // Extract slug from URL parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  const slug = urlParams.get('slug');
+  const [searchParams] = useSearchParams();
+  const slug = searchParams.get('slug');
 
   // Fetch the specific blog post
-  const { post: currentPost, isLoading: isPostLoading, isError: isPostError } = useBlogPost(slug);
+  const { post: currentPost, isLoading: isPostLoading, isError: isPostError } = useBlogPost(slug || '');
   
   // Fetch related posts
   const { posts: allPosts } = useBlogPosts();
@@ -506,7 +504,7 @@ export default function BlogDetail() {
         </div>
 
         <div className="mt-16">
-          <AuthorBio author={currentPost.author} />
+          <AuthorBio author={currentPost.author} author_image={currentPost.author_image} author_bio={currentPost.author_bio} />
         </div>
       </div>
 
