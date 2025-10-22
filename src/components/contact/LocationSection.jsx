@@ -19,7 +19,7 @@ export default function LocationSection() {
     {
       icon: Phone,
       label: "Phone",
-      value: "+234 704 448 7002",
+      value: "+234 812 400 1495",
       subtitle: "WhatsApp available"
     },
     {

@@ -51,17 +51,16 @@ export default function CallToAction() {
               Partner With Us
             </h3>
             <p className="text-base sm:text-lg lg:text-xl text-[var(--text-muted)] leading-relaxed font-light mb-6 sm:mb-8">
-   At Nourie, we believe great partnerships create lasting impact. We collaborate with organizations, offices, and businesses to provide reliable corporate meals, event catering, subscription meal plans, and bulk orders.
-            Let’s create a tailored food experience that keeps your team satisfied and productive.
+              Are you a restaurant, supplier, or business interested in collaborating? Let's work together to bring quality food to more people across Nigeria.
             </p>
             
-            <Link to={createPageUrl("corporatepartnership")}>
+            <Link to={createPageUrl("Contact")}>
               <motion.button 
                 className="inline-flex items-center space-x-3 px-8 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 bg-gradient-to-r from-[var(--primary-accent)] to-[#356859] text-white hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto justify-center"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                 <span>Partner with Nourie</span>
+                <span>Let's Talk Business</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
             </Link>
@@ -86,12 +85,9 @@ export default function CallToAction() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-         <Link to={createPageUrl("waitinglist")}>
               <AppStoreButton variant="default" className="w-full sm:w-auto" />
-              </Link>
-               <Link to={createPageUrl("waitinglist")}>
               <GooglePlayButton variant="default" className="w-full sm:w-auto" />
-              </Link>            </div>
+            </div>
           </motion.div>
         </div>
 

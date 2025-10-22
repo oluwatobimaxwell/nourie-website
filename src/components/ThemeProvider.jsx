@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import ScrollToTop from './ScrollToTop';
 
 const ThemeContext = createContext();
 
@@ -31,7 +30,6 @@ export function ThemeProvider({ children }) {
 
   return (
     <ThemeContext.Provider value={value}>
-      <ScrollToTop />
       {children}
     </ThemeContext.Provider>
   );

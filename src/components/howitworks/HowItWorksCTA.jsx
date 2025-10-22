@@ -3,8 +3,6 @@ import { motion, useInView } from 'framer-motion';
 import { Star } from 'lucide-react';
 import AppStoreButton from '../common/AppStoreButton';
 import GooglePlayButton from '../common/GooglePlayButton';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 
 export default function HowItWorksCTA() {
   const ref = useRef(null);
@@ -44,13 +42,9 @@ export default function HowItWorksCTA() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
           >
-               <Link to={createPageUrl("waitinglist")}>
-                    <AppStoreButton variant="solid" className="w-full sm:w-auto" />
-                    </Link>
-                    <Link to={createPageUrl("waitinglist")}>
-                    <GooglePlayButton variant="solid" className="w-full sm:w-auto" />
-                    </Link>
-                  </motion.div>
+            <AppStoreButton variant="solid" />
+            <GooglePlayButton variant="solid" />
+          </motion.div>
 
           {/* Trust Indicators */}
           <motion.div

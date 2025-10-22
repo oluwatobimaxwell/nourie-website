@@ -7,13 +7,27 @@ export default function MissionVision() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="mission-vision" ref={ref} className="py-20 sm:py-32 bg-[var(--background-alt)]">
+    <section id="mission-vision" ref={ref} className="py-24 md:py-32 bg-[var(--background-alt)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text-main)] mb-6">
+            Our Driving <span className="gradient-text">Force</span>
+          </h2>
+          <p className="text-xl text-[var(--text-muted)] max-w-3xl mx-auto font-light">
+            The mission and vision that guide everything we do
+          </p>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-          className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start"
+          className="grid lg:grid-cols-2 gap-8 items-stretch"
         >
           {/* Mission */}
           <div className="glass-morphism p-8 sm:p-12 rounded-3xl">
@@ -39,7 +53,7 @@ export default function MissionVision() {
           </div>
 
           {/* Vision */}
-          <div className="glass-morphism p-8 sm:p-12 rounded-3xl mt-0">
+          <div className="glass-morphism p-8 sm:p-12 rounded-3xl">
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}

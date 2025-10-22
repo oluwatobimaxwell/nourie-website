@@ -1,10 +1,24 @@
+
+
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import PremiumFooter from "../components/layout/PremiumFooter";
 import { ThemeProvider, useTheme } from "../components/ThemeProvider";
+
+// Create a client instance
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+    },
+  },
+});
 
 function LayoutContent({ children, currentPageName }) {
   const { theme, toggleTheme } = useTheme();
@@ -14,18 +28,30 @@ function LayoutContent({ children, currentPageName }) {
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
 
+  useEffect(() => {
+    // Close mobile menu and dropdowns on navigation
+    setMobileMenuOpen(false);
+    setMobileAboutOpen(false);
+    setAboutDropdownOpen(false); // Also close desktop dropdown if open on navigation
+
+    if (!location.hash) {
+      // Scroll to top if no hash - applies to ALL pages
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // Scroll to section if hash exists
+      const section = document.querySelector(location.hash);
+      if (section) {
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+      }
+    }
+  }, [location.pathname, location.hash]);
+
   const { scrollYProgress } = useScroll();
   
-  const navBackground = useTransform(
-    scrollYProgress,
-    [0, 0.1],
-    ["rgba(18, 18, 18, 0.95)", "rgba(18, 18, 18, 0.95)"]
-  );
-  const navBackgroundLight = useTransform(
-    scrollYProgress,
-    [0, 0.1],
-    ["rgba(255, 255, 255, 0.95)", "rgba(255, 255, 255, 0.95)"]
-  );
+  // The navBackground and navBackgroundLight useTransform hooks are removed as per the plan
+  // The background is now dynamically controlled by scrollY and isHomePage
 
   const isHomePage = location.pathname === createPageUrl("Home") || location.pathname === "/";
 
@@ -34,6 +60,10 @@ function LayoutContent({ children, currentPageName }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Determine if navbar should have background
+  // Navbar has background if scrolled down, or if not on the homepage
+  const showNavBackground = scrollY > 50 || !isHomePage;
 
   const navigationItems = [
     { name: "Home", path: createPageUrl("Home") },
@@ -51,6 +81,7 @@ function LayoutContent({ children, currentPageName }) {
     },
     { name: "How It Works", path: createPageUrl("HowItWorks") },
     { name: "Partnership", path: createPageUrl("CorporatePartnership") },
+    { name: "Blog", path: createPageUrl("Blogs") },
     { name: "Contact", path: createPageUrl("Contact") },
   ];
 
@@ -111,15 +142,19 @@ function LayoutContent({ children, currentPageName }) {
       `}</style>
 
       <motion.nav 
-        className="fixed top-0 w-full z-50 transition-colors duration-300"
+        className="fixed top-0 w-full z-50 transition-all duration-300"
         style={{
-          backgroundColor: theme === 'dark' ? navBackground : navBackgroundLight,
-          backdropFilter: 'blur(12px)',
+          backgroundColor: showNavBackground 
+            ? (theme === 'dark' ? 'rgba(18, 18, 18, 0.95)' : 'rgba(255, 255, 255, 0.95)')
+            : 'transparent',
+          backdropFilter: showNavBackground ? 'blur(12px)' : 'none',
         }}
       >
         <div 
-          className="transition-all duration-500 border-b border-[var(--glass-border)]"
-          style={{ borderColor: 'var(--glass-border)' }}
+          className="transition-all duration-500"
+          style={{ 
+            borderBottom: showNavBackground ? '1px solid var(--glass-border)' : '1px solid transparent'
+          }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-20">
@@ -131,17 +166,19 @@ function LayoutContent({ children, currentPageName }) {
                 >
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <img 
-                      src="https://boolean-bucket.nyc3.cdn.digitaloceanspaces.com/nourie/NOURIE%20LOGO.png" 
+                      src="https://usc1.contabostorage.com/f1c12e4ccb9c4c7997808c3aa039be4b:nourie-prod/media/nourie-logo-v2.png" 
                       alt="Nourie Logo" 
-                      className="h-10 hidden dark:block" 
-                    />
-                    <img 
-                      src="https://boolean-bucket.nyc3.cdn.digitaloceanspaces.com/nourie/NOURIE%20LOGO.png" 
-                      alt="Nourie Logo" 
-                      className="h-10 dark:hidden" 
+                      className="h-10" 
                     />
                   </motion.div>
-                  <span className="text-2xl font-bold text-[var(--primary-accent)] hidden sm:block">Nourie</span>
+                  <span 
+                    className="text-2xl font-bold hidden sm:block transition-colors duration-300"
+                    style={{ 
+                      color: (!showNavBackground && isHomePage) ? 'white' : 'var(--text-main)'
+                    }}
+                  >
+                    Nourie
+                  </span>
                 </Link>
               </div>
 
@@ -160,15 +197,20 @@ function LayoutContent({ children, currentPageName }) {
                           to={item.path}
                           className={`relative text-sm font-medium transition-all duration-300 flex items-center space-x-1 ${
                             isActiveMenuItem(item.path) 
-                              ? 'text-[var(--primary-accent)]' 
-                              : 'text-[var(--text-muted)] hover:text-[var(--primary-accent)]'
+                              ? ((!showNavBackground && isHomePage) ? 'text-white' : 'text-[var(--primary-accent)]') // Active item text color
+                              : ((!showNavBackground && isHomePage) ? 'text-white/80 hover:text-white' : 'text-[var(--text-muted)] hover:text-[var(--primary-accent)]') // Inactive item text color
                           }`}
                         >
                           <span className="relative z-10">{item.name}</span>
                           <ChevronDown className="w-4 h-4" />
-                          <div className={`absolute -bottom-1 left-0 right-0 h-0.5 transition-transform duration-300 bg-[var(--primary-accent)] ${
-                            isActiveMenuItem(item.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                          }`} />
+                          <div 
+                            className={`absolute -bottom-1 left-0 right-0 h-0.5 transition-transform duration-300 ${
+                              isActiveMenuItem(item.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                            }`}
+                            style={{
+                              backgroundColor: (!showNavBackground && isHomePage) ? 'white' : 'var(--primary-accent)' // Underline color
+                            }}
+                          />
                         </Link>
                         
                         {/* Dropdown Menu */}
@@ -205,30 +247,40 @@ function LayoutContent({ children, currentPageName }) {
                         to={item.path}
                         className={`relative text-sm font-medium transition-all duration-300 group ${
                           isActiveMenuItem(item.path) 
-                            ? 'text-[var(--primary-accent)]' 
-                            : 'text-[var(--text-muted)] hover:text-[var(--primary-accent)]'
+                            ? ((!showNavBackground && isHomePage) ? 'text-white' : 'text-[var(--primary-accent)]') 
+                            : ((!showNavBackground && isHomePage) ? 'text-white/80 hover:text-white' : 'text-[var(--text-muted)] hover:text-[var(--primary-accent)]')
                         }`}
                       >
                         <span className="relative z-10">{item.name}</span>
-                        <div className={`absolute -bottom-1 left-0 right-0 h-0.5 transition-transform duration-300 bg-[var(--primary-accent)] ${
-                          isActiveMenuItem(item.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                        }`} />
+                        <div 
+                          className={`absolute -bottom-1 left-0 right-0 h-0.5 transition-transform duration-300 ${
+                            isActiveMenuItem(item.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                          }`}
+                          style={{
+                            backgroundColor: (!showNavBackground && isHomePage) ? 'white' : 'var(--primary-accent)'
+                          }}
+                        />
                       </Link>
                     )
                   ))}
-                     <Link to={createPageUrl("waitinglist")}>
+                  
                   <motion.button 
                     className="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-[var(--secondary-accent)] to-[var(--yellow-accent)] text-[#121212] hover:scale-105"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      window.location.href = createPageUrl("WaitingList");
+                    }}
                   >
-                    
                     Join Waitlist
                   </motion.button>
-                  </Link>    
+                  
                   <motion.button
                     onClick={toggleTheme}
-                    className="p-2 rounded-full glass-morphism text-[var(--text-main)]"
+                    className="p-2 rounded-full glass-morphism"
+                    style={{
+                      color: (!showNavBackground && isHomePage) ? 'white' : 'var(--text-main)' // Icon color
+                    }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -239,7 +291,10 @@ function LayoutContent({ children, currentPageName }) {
                 {/* Mobile Menu Button */}
                 <div className="md:hidden">
                   <motion.button
-                    className="w-12 h-12 rounded-full glass-morphism flex items-center justify-center text-[var(--text-main)] hover:bg-[var(--background-alt)]/60 transition-all duration-300"
+                    className="w-12 h-12 rounded-full glass-morphism flex items-center justify-center hover:bg-[var(--background-alt)]/60 transition-all duration-300"
+                    style={{
+                      color: (!showNavBackground && isHomePage) ? 'white' : 'var(--text-main)' // Icon color
+                    }}
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -333,35 +388,35 @@ function LayoutContent({ children, currentPageName }) {
                 )}
               </motion.div>
             ))}
-          <Link to={createPageUrl("waitinglist")}>
+            
             <motion.div 
               className="border-t border-[var(--glass-border)] pt-6 mt-6 flex items-center justify-between"
               initial={{ opacity: 0 }}
               animate={{ opacity: mobileMenuOpen ? 1 : 0 }}
               transition={{ delay: mobileMenuOpen ? 0.6 : 0 }}
-              onClick={() => setMobileMenuOpen(false)}
             >
-
               <motion.button 
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  window.location.href = createPageUrl("WaitingList");
+                }}
                 className="w-full px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-[var(--secondary-accent)] to-[var(--yellow-accent)] text-[#121212]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Join WaitList
+                Join Waiting List
               </motion.button>
-      
 
               <motion.button
-                  onClick={toggleTheme}
-                  className="p-3 ml-4 rounded-full glass-morphism text-[var(--text-main)]"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-                </motion.button>
+                onClick={toggleTheme}
+                className="p-3 ml-4 rounded-full glass-morphism text-[var(--text-main)]" 
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+              </motion.button>
             </motion.div>
-                    </Link>         
-                              </div>
+          </div>
         </motion.div>
       </motion.nav>
 
@@ -376,10 +431,13 @@ function LayoutContent({ children, currentPageName }) {
 
 export default function Layout({ children, currentPageName }) {
   return (
-    <ThemeProvider>
-      <LayoutContent currentPageName={currentPageName}>
-        {children}
-      </LayoutContent>
-    </ThemeProvider>
-  )
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <LayoutContent currentPageName={currentPageName}>
+          {children}
+        </LayoutContent>
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
 }
+

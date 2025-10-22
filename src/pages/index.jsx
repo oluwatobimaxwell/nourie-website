@@ -14,8 +14,6 @@ import TermsOfService from "./TermsOfService";
 
 import CookiePolicy from "./CookiePolicy";
 
-import BlogPost from "./BlogPost";
-
 import Blogs from "./Blogs";
 
 import CorporatePartnership from "./CorporatePartnership";
@@ -23,6 +21,8 @@ import CorporatePartnership from "./CorporatePartnership";
 import PartnershipForm from "./PartnershipForm";
 
 import WaitingList from "./WaitingList";
+
+import BlogDetail from "./BlogDetail";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
@@ -42,8 +42,6 @@ const PAGES = {
     
     CookiePolicy: CookiePolicy,
     
-    BlogPost: BlogPost,
-    
     Blogs: Blogs,
     
     CorporatePartnership: CorporatePartnership,
@@ -51,6 +49,8 @@ const PAGES = {
     PartnershipForm: PartnershipForm,
     
     WaitingList: WaitingList,
+    
+    BlogDetail: BlogDetail,
     
 }
 
@@ -93,8 +93,6 @@ function PagesContent() {
                 
                 <Route path="/CookiePolicy" element={<CookiePolicy />} />
                 
-                <Route path="/BlogPost" element={<BlogPost />} />
-                
                 <Route path="/Blogs" element={<Blogs />} />
                 
                 <Route path="/CorporatePartnership" element={<CorporatePartnership />} />
@@ -102,6 +100,8 @@ function PagesContent() {
                 <Route path="/PartnershipForm" element={<PartnershipForm />} />
                 
                 <Route path="/WaitingList" element={<WaitingList />} />
+                
+                <Route path="/BlogDetail" element={<BlogDetail />} />
                 
             </Routes>
         </Layout>

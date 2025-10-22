@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Heart, ShieldCheck, Users, Lightbulb, ChefHat } from 'lucide-react';
@@ -16,7 +15,7 @@ export default function CoreValues() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="values" ref={ref} className="py-32 bg-[var(--background)] relative overflow-hidden">
+    <section id="values" ref={ref} className="py-24 md:py-32 bg-[var(--background)] relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0" style={{ 
@@ -29,13 +28,13 @@ export default function CoreValues() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <h2 className="text-5xl lg:text-6xl font-bold text-[var(--text-main)] mb-6">
-            Our Guiding <span className="gradient-text">Values</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text-main)] mb-6">
+            Our Guiding <span className="gradient-text">Principles</span>
           </h2>
           <p className="text-xl text-[var(--text-muted)] max-w-3xl mx-auto font-light">
-            These are the principles that shape our culture, guide our decisions, and drive our commitment to you.
+            The values that shape our culture and guide our decisions
           </p>
         </motion.div>
 
@@ -46,7 +45,7 @@ export default function CoreValues() {
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.1 * index, ease: [0.25, 0.1, 0.25, 1] }}
-              className="glass-morphism p-8 rounded-3xl text-center group"
+              className="glass-morphism p-8 rounded-3xl text-center group hover:shadow-xl transition-shadow duration-300"
             >
               <div className="w-20 h-20 bg-gradient-to-br from-[var(--primary-accent)] to-[#356859] rounded-2xl flex items-center justify-center mx-auto mb-6 transform group-hover:-translate-y-2 group-hover:scale-110 transition-all duration-300">
                 <value.icon className="w-10 h-10 text-white" />
@@ -59,7 +58,7 @@ export default function CoreValues() {
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.1 * 5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="md:col-span-2 lg:col-span-1 glass-morphism p-8 rounded-3xl text-center group bg-gradient-to-br from-[var(--secondary-accent)]/20 to-transparent"
+              className="md:col-span-2 lg:col-span-1 glass-morphism p-8 rounded-3xl text-center group bg-gradient-to-br from-[var(--secondary-accent)]/20 to-transparent hover:shadow-xl transition-shadow duration-300"
             >
               <h3 className="text-2xl font-semibold text-[var(--text-main)] mb-3">And so much more...</h3>
               <p className="text-lg text-[var(--text-muted)] leading-relaxed font-light">

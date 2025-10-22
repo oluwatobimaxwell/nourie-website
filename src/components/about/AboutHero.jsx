@@ -8,7 +8,7 @@ export default function AboutHero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://img.freepik.com/free-photo/view-ready-eat-delicious-meal-go_23-2151431768.jpg?semt=ais_hybrid&w=740&q=80"
+          src="https://images.pexels.com/photos/4190997/pexels-photo-4190997.jpeg"
           alt="Nigerian food market vibrant scene"
           className="w-full h-full object-cover"
         />

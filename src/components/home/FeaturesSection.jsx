@@ -235,13 +235,14 @@ export default function FeaturesSection() {
               <div className="relative w-16 h-1 rounded-full bg-[var(--background-alt)] overflow-hidden">
                 <motion.div
                   className="absolute inset-0 rounded-full"
-                  style={{ backgroundColor: feature.color, transformOrigin: 'left' }}
+                  style={{ backgroundColor: feature.color }}
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: activeTab === index ? 1 : 0 }}
                   transition={{ 
                     duration: autoPlay && activeTab === index ? 6 : 0.3,
                     ease: "linear"
                   }}
+                  style={{ transformOrigin: 'left' }}
                 />
               </div>
             </button>

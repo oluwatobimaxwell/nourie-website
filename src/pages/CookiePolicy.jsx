@@ -86,7 +86,7 @@ export default function CookiePolicy() {
             <p className="text-xl text-[var(--text-muted)] max-w-2xl mx-auto">
               Understanding how we use cookies to enhance your Nourie experience.
             </p>
-            <p className="text-sm text-[var(--text-muted)]/70 mt-6">Last updated: October 1, 2025</p>
+            <p className="text-sm text-[var(--text-muted)]/70 mt-6">Last updated: January 1, 2025</p>
           </motion.div>
         </div>
       </section>

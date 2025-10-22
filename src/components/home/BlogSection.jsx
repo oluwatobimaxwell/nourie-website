@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { BlogPost } from '@/api/entities';
+import { BlogPost } from '@/api/entities/BlogPost';
 import { createPageUrl } from '@/utils';
 import { format } from 'date-fns';
 import { ArrowRight, Calendar, User, Clock } from 'lucide-react';

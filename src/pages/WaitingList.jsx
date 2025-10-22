@@ -1,9 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { base44 } from "@/api/base44Client";
-import { useMutation } from "@tanstack/react-query";
-import { submitWaitlist } from "../api/waitlist";
-
 import { 
   Sparkles, 
   Gift, 
@@ -26,21 +22,10 @@ export default function WaitingList() {
     service_interest: "all"
   });
   
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const confirmationRef = useRef(null);
+  const [error, setError] = useState("");
 
-  useEffect(() => {
-  if (isSubmitted && confirmationRef.current) {
-    confirmationRef.current.scrollIntoView({ behavior: "smooth" });
-  }
-}, [isSubmitted]);
-
-  const { mutate, isPending, isError, error } = useMutation({
-    mutationFn: submitWaitlist,
-    onSuccess: () => {
-      setIsSubmitted(true);
-    },
-  });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -48,8 +33,32 @@ export default function WaitingList() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    mutate(formData);
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const response = await fetch("https://production.eatnourie.com/api/engagements/waitlist/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "accept": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit waitlist signup");
+      }
+
+      setIsSubmitted(true);
+    } catch (err) {
+      setError("Something went wrong. Please try again or contact us directly at hello@eatnourie.com");
+      console.error("Waiting list submission error:", err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   const benefits = [
     {
       icon: Gift,
@@ -75,7 +84,7 @@ export default function WaitingList() {
 
   if (isSubmitted) {
     return (
-      <div ref={confirmationRef}  className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4 py-20">
+      <div className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4 py-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -93,7 +102,8 @@ export default function WaitingList() {
               Welcome to the Nourie Family!
             </p>
             <p className="text-[var(--text-muted)] text-lg leading-relaxed mb-8">
-              Thanks for joining our waiting list. We'll keep you updated on our launch progress and send you your exclusive 
+              We've received your signup. Check your email for a confirmation message. 
+              We'll keep you updated on our launch progress and send you your exclusive 
               early-bird discount code soon. Get ready for an amazing food experience!
             </p>
             <div className="bg-[var(--primary-accent)]/10 border border-[var(--primary-accent)]/20 rounded-2xl p-6 mb-8">
@@ -245,7 +255,7 @@ export default function WaitingList() {
             viewport={{ once: true }}
           >
             <form onSubmit={handleSubmit} className="glass-morphism p-8 lg:p-12 rounded-3xl">
-              {isError && (
+              {error && (
                 <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-sm">
                   {error}
                 </div>
@@ -273,7 +283,7 @@ export default function WaitingList() {
                 <div>
                   <label className="flex items-center space-x-2 text-[var(--text-main)] font-medium mb-3">
                     <Mail className="w-4 h-4 text-[var(--primary-accent)]" />
-                    <span>Email Address *</span>
+                    <span>Email *</span>
                   </label>
                   <input
                     type="email"
@@ -290,7 +300,7 @@ export default function WaitingList() {
                 <div>
                   <label className="flex items-center space-x-2 text-[var(--text-main)] font-medium mb-3">
                     <Phone className="w-4 h-4 text-[var(--primary-accent)]" />
-                    <span>Phone Number *</span>
+                    <span>Phone *</span>
                   </label>
                   <input
                     type="tel"
@@ -343,10 +353,10 @@ export default function WaitingList() {
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isPending}
+                disabled={isSubmitting}
                 className="w-full mt-8 px-8 py-4 rounded-full font-semibold text-lg bg-gradient-to-r from-[var(--primary-accent)] to-[#356859] text-white hover:scale-[1.02] transition-all duration-300 shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3"
               >
-                {isPending ? (
+                {isSubmitting ? (
                   <>
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                     <span>Joining...</span>

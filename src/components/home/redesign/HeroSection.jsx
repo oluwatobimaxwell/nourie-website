@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import AppStoreButton from '../../common/AppStoreButton';
 import GooglePlayButton from '../../common/GooglePlayButton';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 
 export default function HeroSection() {
   return (
@@ -13,7 +11,7 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg"
+          src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg"
           alt="Beautifully plated Nigerian cuisine"
           className="w-full h-full object-cover"
         />
@@ -28,7 +26,7 @@ export default function HeroSection() {
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-tight"
         >
-          Nourie: Culinary Craftsmanship
+          Nourie: Culinary Craftsmanship.
           <br />
           <span className="gradient-text">Delivered.</span>
         </motion.h1>
@@ -49,13 +47,9 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8"
         >
-              <Link to={createPageUrl("waitinglist")}>
-            <AppStoreButton variant="solid" className="w-full sm:w-auto" />
-            </Link>
-            <Link to={createPageUrl("waitinglist")}>
-            <GooglePlayButton variant="solid" className="w-full sm:w-auto" />
-            </Link>
-          </motion.div>
+          <AppStoreButton variant="solid" />
+          <GooglePlayButton variant="solid" />
+        </motion.div>
 
         {/* Secondary CTA */}
         <motion.div

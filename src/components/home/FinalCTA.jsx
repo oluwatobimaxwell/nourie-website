@@ -4,8 +4,6 @@ import { motion, useInView } from 'framer-motion';
 import { Star } from 'lucide-react';
 import AppStoreButton from '../common/AppStoreButton';
 import GooglePlayButton from '../common/GooglePlayButton';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 
 export default function FinalCTA() {
   const ref = useRef(null);
@@ -50,12 +48,8 @@ export default function FinalCTA() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           >
-             <Link to={createPageUrl("waitinglist")}>
             <AppStoreButton variant="solid" className="w-full sm:w-auto" />
-            </Link>
-            <Link to={createPageUrl("waitinglist")}>
             <GooglePlayButton variant="solid" className="w-full sm:w-auto" />
-            </Link>
           </motion.div>
 
           {/* Trust Indicators */}

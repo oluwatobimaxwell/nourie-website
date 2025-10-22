@@ -2,8 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import AppStoreButton from '../common/AppStoreButton';
 import GooglePlayButton from '../common/GooglePlayButton';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 
 export default function ContactCTA() {
   return (
@@ -24,12 +22,8 @@ export default function ContactCTA() {
             Download our app and discover how good food can be accessible again.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                     <Link to={createPageUrl("waitinglist")}>
-            <AppStoreButton variant="solid" className="w-full sm:w-auto" />
-            </Link>
-            <Link to={createPageUrl("waitinglist")}>
-            <GooglePlayButton variant="solid" className="w-full sm:w-auto" />
-            </Link>
+            <AppStoreButton variant="solid" />
+            <GooglePlayButton variant="solid" />
           </div>
         </motion.div>
       </div>

@@ -16,6 +16,7 @@ export default function PremiumFooter() {
     { name: "About", path: createPageUrl("About") },
     { name: "How It Works", path: createPageUrl("HowItWorks") },
     { name: "Partnership", path: createPageUrl("CorporatePartnership") },
+    { name: "Blog", path: createPageUrl("Blogs") },
   ];
 
   const supportLinks = [
@@ -77,14 +78,9 @@ export default function PremiumFooter() {
               <Link to={createPageUrl("Home")} className="block mb-6">
                 <div className="flex items-center space-x-3">
                   <img 
-                    src="https://boolean-bucket.nyc3.cdn.digitaloceanspaces.com/nourie/NOURIE%20LOGO.png" 
+                    src="https://usc1.contabostorage.com/f1c12e4ccb9c4c7997808c3aa039be4b:nourie-prod/media/nourie-logo-v2.png" 
                     alt="Nourie Logo" 
-                    className="h-12 hidden dark:block" 
-                  />
-                  <img 
-                    src="https://boolean-bucket.nyc3.cdn.digitaloceanspaces.com/nourie/NOURIE%20LOGO.png" 
-                    alt="Nourie Logo" 
-                    className="h-12 dark:hidden" 
+                    className="h-12" 
                   />
                   <span className="text-2xl font-bold text-[var(--text-main)]">Nourie</span>
                 </div>

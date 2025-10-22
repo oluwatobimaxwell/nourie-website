@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Landmark, Utensils, Users, ChevronDown } from 'lucide-react';
@@ -33,7 +32,7 @@ const nameOrigins = [
 const OriginItem = ({ item, isOpen, onClick }) => (
   <div className="border-b border-[var(--glass-border)] last:border-b-0">
     <button
-      className="w-full flex justify-between items-center text-left py-6"
+      className="w-full flex justify-between items-center text-left py-6 hover:bg-[var(--background-alt)]/30 transition-colors px-4 rounded-lg"
       onClick={onClick}
     >
       <div className="flex items-center space-x-4">
@@ -58,7 +57,7 @@ const OriginItem = ({ item, isOpen, onClick }) => (
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="overflow-hidden"
         >
-          <div className="pb-6 pl-16 space-y-4">
+          <div className="pb-6 pl-16 pr-4 space-y-4">
             {item.content.map((p, i) => (
               <p key={i} className="text-lg text-[var(--text-muted)] leading-relaxed font-light">{p}</p>
             ))}
@@ -69,7 +68,6 @@ const OriginItem = ({ item, isOpen, onClick }) => (
   </div>
 );
 
-
 export default function OurName() {
   const [openIndex, setOpenIndex] = useState(0);
 
@@ -78,7 +76,7 @@ export default function OurName() {
   };
 
   return (
-    <section id="our-name" className="py-32 bg-gradient-to-br from-[var(--background-alt)] via-[var(--background-alt)] to-[var(--background)] relative overflow-hidden">
+    <section id="our-name" className="py-24 md:py-32 bg-gradient-to-br from-[var(--background-alt)] via-[var(--background-alt)] to-[var(--background)] relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{ 
@@ -94,11 +92,11 @@ export default function OurName() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl lg:text-6xl font-bold text-[var(--text-main)] mb-6">
-            Our Name, Our Heritage
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text-main)] mb-6">
+            Our Name, Our <span className="gradient-text">Heritage</span>
           </h2>
           <p className="text-xl text-[var(--text-muted)] max-w-3xl mx-auto font-light">
-            "Nourie" is a celebration of Nigeria's rich linguistic tapestry, a tribute to the universal word that binds us all: Food.
+            "Nourie" celebrates Nigeria's rich linguistic tapestry—a tribute to the universal word that binds us all: Food.
           </p>
         </motion.div>
 

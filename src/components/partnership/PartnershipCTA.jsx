@@ -90,7 +90,7 @@ export default function PartnershipCTA() {
               to={createPageUrl("PartnershipForm")}
               className="inline-flex items-center space-x-3 px-10 py-4 rounded-full font-semibold text-lg bg-gradient-to-r from-[var(--primary-accent)] to-[#356859] text-white hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
             >
-              <span>Partner with us</span>
+              <span>Schedule a Consultation</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
           </motion.div>

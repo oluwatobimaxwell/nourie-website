@@ -2,8 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import AppStoreButton from '../../common/AppStoreButton';
 import GooglePlayButton from '../../common/GooglePlayButton';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 
 export default function TextContent({ isMobileView, socialLinks }) {
   return (
@@ -36,12 +34,8 @@ export default function TextContent({ isMobileView, socialLinks }) {
         transition={{ duration: 1, delay: isMobileView ? 0.4 : 1.2, ease: [0.25, 0.1, 0.25, 1] }}
         className={`flex flex-col sm:flex-row gap-6 mb-10 ${isMobileView ? 'justify-center' : 'justify-center lg:justify-start'}`}
       >
-         <Link to={createPageUrl("waitinglist")}>
         <AppStoreButton variant="default" />
-        </Link>
-         <Link to={createPageUrl("waitinglist")}>
         <GooglePlayButton variant="default" />
-        </Link>
       </motion.div>
       
       {/* Social Media Links */}
