@@ -24,6 +24,8 @@ import WaitingList from "./WaitingList";
 
 import BlogDetail from "./BlogDetail";
 
+import ScrollToTop from "@/components/ScrollToTop.jsx";
+
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
@@ -111,6 +113,7 @@ function PagesContent() {
 export default function Pages() {
     return (
         <Router>
+            <ScrollToTop />
             <PagesContent />
         </Router>
     );

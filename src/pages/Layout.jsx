@@ -28,26 +28,6 @@ function LayoutContent({ children, currentPageName }) {
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
 
-  useEffect(() => {
-    // Close mobile menu and dropdowns on navigation
-    setMobileMenuOpen(false);
-    setMobileAboutOpen(false);
-    setAboutDropdownOpen(false); // Also close desktop dropdown if open on navigation
-
-    if (!location.hash) {
-      // Scroll to top if no hash - applies to ALL pages
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      // Scroll to section if hash exists
-      const section = document.querySelector(location.hash);
-      if (section) {
-        setTimeout(() => {
-          section.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100);
-      }
-    }
-  }, [location.pathname, location.hash]);
-
   const { scrollYProgress } = useScroll();
   
   // The navBackground and navBackgroundLight useTransform hooks are removed as per the plan
