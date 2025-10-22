@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import AppStoreButton from '../../common/AppStoreButton';
 import GooglePlayButton from '../../common/GooglePlayButton';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
 
 export default function HeroSection() {
   return (
@@ -47,10 +49,13 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8"
         >
-          <AppStoreButton variant="solid" />
-          <GooglePlayButton variant="solid" />
+              <Link to={createPageUrl("waitinglist")}>
+            <AppStoreButton variant="solid" className="w-full sm:w-auto" />
+            </Link>
+            <Link to={createPageUrl("waitinglist")}>
+            <GooglePlayButton variant="solid" className="w-full sm:w-auto" />
+            </Link>
         </motion.div>
-
         {/* Secondary CTA */}
         <motion.div
           initial={{ opacity: 0 }}

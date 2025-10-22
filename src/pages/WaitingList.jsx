@@ -102,7 +102,7 @@ export default function WaitingList() {
               Welcome to the Nourie Family!
             </p>
             <p className="text-[var(--text-muted)] text-lg leading-relaxed mb-8">
-              We've received your signup. Check your email for a confirmation message. 
+              We've received your signup, Thank you for joining the waitlist. 
               We'll keep you updated on our launch progress and send you your exclusive 
               early-bird discount code soon. Get ready for an amazing food experience!
             </p>

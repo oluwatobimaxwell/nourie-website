@@ -54,7 +54,7 @@ export default function CallToAction() {
               Are you a restaurant, supplier, or business interested in collaborating? Let's work together to bring quality food to more people across Nigeria.
             </p>
             
-            <Link to={createPageUrl("Contact")}>
+            <Link to={createPageUrl("CorporatePartnership")}>
               <motion.button 
                 className="inline-flex items-center space-x-3 px-8 sm:px-10 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 bg-gradient-to-r from-[var(--primary-accent)] to-[#356859] text-white hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto justify-center"
                 whileHover={{ scale: 1.05, y: -2 }}
@@ -85,10 +85,14 @@ export default function CallToAction() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <AppStoreButton variant="default" className="w-full sm:w-auto" />
-              <GooglePlayButton variant="default" className="w-full sm:w-auto" />
-            </div>
-          </motion.div>
+                  <Link to={createPageUrl("waitinglist")}>
+            <AppStoreButton variant="default" className="w-full sm:w-auto" />
+            </Link>
+            <Link to={createPageUrl("waitinglist")}>
+            <GooglePlayButton variant="default" className="w-full sm:w-auto" />
+            </Link>
+          </div>
+        </motion.div>
         </div>
 
         {/* Bottom Statistics or Trust Indicators */}
