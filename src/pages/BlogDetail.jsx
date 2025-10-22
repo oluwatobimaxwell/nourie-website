@@ -443,9 +443,17 @@ export default function BlogDetail() {
 
             <div className="flex flex-wrap items-center gap-6 text-sm text-[var(--text-muted)] mb-8">
               <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--primary-accent)] to-[var(--secondary-accent)] flex items-center justify-center">
-                  <User className="w-5 h-5 text-white" />
-                </div>
+                {currentPost.author_image ? (
+                  <img
+                    src={currentPost.author_image}
+                    alt={currentPost.author}
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--primary-accent)] to-[var(--secondary-accent)] flex items-center justify-center">
+                    <User className="w-5 h-5 text-white" />
+                  </div>
+                )}
                 <span className="font-medium text-[var(--text-main)]">{currentPost.author}</span>
               </div>
               <div className="flex items-center space-x-2">
