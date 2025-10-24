@@ -8,7 +8,7 @@ const contactMethods = [
     title: "WhatsApp Support",
     description: "Get instant answers. Perfect for urgent questions.",
     action: "Start Chat",
-    href: "https://wa.me/2348124001495",
+    href: "https://wa.me/2347044487002",
     gradient: "from-[#25D366] to-[#128C7E]",
     badge: "Fastest Response"
   },
@@ -26,9 +26,9 @@ const contactMethods = [
     title: "Call Us",
     description: "Speak directly with our team during business hours.",
     action: "Call Now",
-    href: "tel:+2348124001495",
+    href: "tel:+2347044487002",
     gradient: "from-[var(--secondary-accent)] to-[var(--yellow-accent)]",
-    badge: "+234 812 400 1495"
+    badge: "+234 704 448 7002"
   }
 ];
 
