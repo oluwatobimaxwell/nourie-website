@@ -35,6 +35,12 @@ const teamMembers = [
     image: "https://ui-avatars.com/api/?name=Otitolaye+Samuel&size=150&background=356859&color=ffffff&rounded=true"
   },
   {
+    name: "Ibidun Ndidiamaka Ezeliora",
+    role: "Director of Product Marketing & Growth",
+    bio: "Leading product marketing strategy and growth initiatives to position Nourie as Nigeria's most trusted food platform.",
+    image: "https://ui-avatars.com/api/?name=Ibidun+Ezeliora&size=150&background=A8D5BA&color=121212&rounded=true"
+  },
+  {
     name: "Adediji Oluwashina",
     role: "Marketing & Sales Lead",
     bio: "Growth strategist connecting Nourie with the community. Expert in building brand awareness and fostering lasting customer relationships.",
