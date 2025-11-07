@@ -24,7 +24,7 @@ const teamMembers = [
   },
   {
     name: "Omoyele Samuel",
-    role: "Tech Lead & Senior Software Engineer",
+    role: "Tech Lead & CTO",
     bio: "Software engineer building and maintaining Nourie's robust platform. Committed to innovative and user-friendly digital solutions.",
     image: "https://ui-avatars.com/api/?name=Omoyele+Samuel&size=150&background=FFD166&color=121212&rounded=true"
   },
