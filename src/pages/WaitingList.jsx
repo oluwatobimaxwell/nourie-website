@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Sparkles, 
@@ -14,6 +14,19 @@ import {
 } from "lucide-react";
 
 export default function WaitingList() {
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      formRef.current?.scrollIntoView({
+        behavior: "instant",
+        block: "start",
+      });
+    }, 50);
+
+    return () => clearTimeout(timeout);
+  }, []);
+  
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
@@ -229,7 +242,7 @@ export default function WaitingList() {
       </section>
 
       {/* Form Section */}
-      <section className="py-24 bg-[var(--background)]">
+      <section ref={formRef} className="py-24 bg-[var(--background)]">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
