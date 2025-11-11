@@ -406,6 +406,13 @@ export default function BlogDetail() {
             margin-top: 32px;
             margin-bottom: 16px;
         }
+
+        .block-image img {
+            max-height: 500px;
+            width: fit-content;
+            margin: auto;
+            margin-bottom: 24px;
+        }
       `}</style>
 
       <motion.div
