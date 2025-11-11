@@ -408,10 +408,10 @@ export default function BlogDetail() {
         }
 
         .block-image img {
-            max-height: 500px;
-            width: fit-content;
-            margin: auto;
-            margin-bottom: 24px;
+        	max-height: 500px;
+        	margin: auto;
+        	margin-bottom: 24px;
+        	object-fit: cover;
         }
       `}</style>
 
