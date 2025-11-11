@@ -399,6 +399,13 @@ export default function BlogDetail() {
             padding-left: 1.5rem;
           }
         }
+
+        .block-heading {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
       `}</style>
 
       <motion.div
