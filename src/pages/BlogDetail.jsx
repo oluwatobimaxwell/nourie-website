@@ -412,6 +412,7 @@ export default function BlogDetail() {
         	margin: auto;
         	margin-bottom: 24px;
         	object-fit: cover;
+          aspect-ratio: 1;
         }
       `}</style>
 
