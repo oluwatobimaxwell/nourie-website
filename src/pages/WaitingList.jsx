@@ -186,7 +186,7 @@ export default function WaitingList() {
               className="flex flex-wrap justify-center gap-8 sm:gap-12"
             >
               <div>
-                <div className="text-4xl sm:text-5xl font-bold gradient-text mb-2">500+</div>
+                <div className="text-4xl sm:text-5xl font-bold gradient-text mb-2">1500+</div>
                 <div className="text-gray-300 text-sm sm:text-base">Already Waiting</div>
               </div>
               <div>
