@@ -30,6 +30,9 @@ export default function AppStoreButton({ variant = 'default', className = '' }) 
 
   return (
     <motion.a 
+      href="https://apps.apple.com/ng/app/eat-nourie/id6753700646"
+      target="_blank"
+      rel="noopener noreferrer"
       className={`${currentVariant.container} ${className}`}
       whileHover={{ scale: 1.05, y: -2 }}
       whileTap={{ scale: 0.98 }}

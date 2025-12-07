@@ -31,6 +31,9 @@ export default function GooglePlayButton({ variant = 'default', className = '' }
 
   return (
     <motion.a 
+      href="https://play.google.com/store/apps/details?id=com.eatnourie.mobile"
+      target="_blank"
+      rel="noopener noreferrer"
       className={`${currentVariant.container} ${className}`}
       whileHover={{ scale: 1.05, y: -2 }}
       whileTap={{ scale: 0.98 }}

@@ -244,17 +244,6 @@ function LayoutContent({ children, currentPageName }) {
                     )
                   ))}
                   
-                  <motion.button 
-                    className="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-[var(--secondary-accent)] to-[var(--yellow-accent)] text-[#121212] hover:scale-105"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      window.location.href = createPageUrl("WaitingList");
-                    }}
-                  >
-                    Join Waitlist
-                  </motion.button>
-                  
                   <motion.button
                     onClick={toggleTheme}
                     className="p-2 rounded-full glass-morphism"
@@ -370,26 +359,14 @@ function LayoutContent({ children, currentPageName }) {
             ))}
             
             <motion.div 
-              className="border-t border-[var(--glass-border)] pt-6 mt-6 flex items-center justify-between"
+              className="border-t border-[var(--glass-border)] pt-6 mt-6 flex items-center justify-end"
               initial={{ opacity: 0 }}
               animate={{ opacity: mobileMenuOpen ? 1 : 0 }}
               transition={{ delay: mobileMenuOpen ? 0.6 : 0 }}
             >
-              <motion.button 
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  window.location.href = createPageUrl("WaitingList");
-                }}
-                className="w-full px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-[var(--secondary-accent)] to-[var(--yellow-accent)] text-[#121212]"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Join Waiting List
-              </motion.button>
-
               <motion.button
                 onClick={toggleTheme}
-                className="p-3 ml-4 rounded-full glass-morphism text-[var(--text-main)]" 
+                className="p-3 rounded-full glass-morphism text-[var(--text-main)]" 
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >

@@ -1,8 +1,6 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
-import { Sparkles, Gift, Bell, Zap, ArrowRight } from 'lucide-react';
+import { Sparkles, Gift, Bell, Zap } from 'lucide-react';
 
 export default function WaitingListCTA() {
   const ref = useRef(null);
@@ -75,23 +73,6 @@ export default function WaitingListCTA() {
             ))}
           </motion.div>
 
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          >
-            <Link
-              to={createPageUrl("WaitingList")}
-              className="inline-flex items-center space-x-2 px-8 py-4 rounded-full font-semibold text-base bg-gradient-to-r from-[var(--secondary-accent)] to-[var(--yellow-accent)] text-[#121212] hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl group"
-            >
-              <span>Join Waiting List</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <p className="text-[var(--text-muted)] text-sm mt-4">
-              <strong className="text-[var(--text-main)]">500+</strong> people already joined
-            </p>
-          </motion.div>
         </motion.div>
       </div>
     </section>

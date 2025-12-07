@@ -85,12 +85,8 @@ export default function CallToAction() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to={createPageUrl("waitinglist")}>
             <AppStoreButton variant="default" className="w-full sm:w-auto" />
-            </Link>
-            <Link to={createPageUrl("waitinglist")}>
             <GooglePlayButton variant="default" className="w-full sm:w-auto" />
-            </Link>
           </div>
         </motion.div>
         </div>
