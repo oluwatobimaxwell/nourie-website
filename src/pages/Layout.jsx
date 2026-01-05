@@ -243,7 +243,18 @@ function LayoutContent({ children, currentPageName }) {
                       </Link>
                     )
                   ))}
-                  
+                  <a
+                    href="https://app.eatnourie.com/explore/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-4 inline-flex items-center px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300"
+                    style={{
+                      backgroundColor: "var(--secondary-accent)",
+                      color: "#121212",
+                    }}
+                  >
+                    Explore Menu
+                  </a>
                   <motion.button
                     onClick={toggleTheme}
                     className="p-2 rounded-full glass-morphism"
@@ -357,7 +368,19 @@ function LayoutContent({ children, currentPageName }) {
                 )}
               </motion.div>
             ))}
-            
+<a
+  href="https://app.eatnourie.com/explore/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block w-full text-center mt-4 px-4 py-3 rounded-xl font-semibold"
+  style={{
+    backgroundColor: "var(--secondary-accent)",
+    color: "#121212",
+  }}
+  onClick={() => setMobileMenuOpen(false)}
+>
+  Explore Menu
+</a>
             <motion.div 
               className="border-t border-[var(--glass-border)] pt-6 mt-6 flex items-center justify-end"
               initial={{ opacity: 0 }}
