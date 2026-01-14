@@ -30,7 +30,7 @@ export default function CloudKitchenAdvantage() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-[var(--background)] relative overflow-hidden">
+    <section ref={ref} className="py-24 md:py-32 bg-[var(--background-alt)] relative overflow-hidden">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0" style={{
