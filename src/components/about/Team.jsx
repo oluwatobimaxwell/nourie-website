@@ -41,12 +41,6 @@ const teamMembers = [
     image: "https://ui-avatars.com/api/?name=Ibidun+Ezeliora&size=150&background=A8D5BA&color=121212&rounded=true"
   },
   {
-    name: "Agbo George",
-    role: "Head Chef",
-    bio: "Culinary artist crafting every dish with passion and precision. Brings authentic Nigerian flavors to life, ensuring quality and deliciousness.",
-    image: "https://ui-avatars.com/api/?name=Agbo+George&size=150&background=A8D5BA&color=121212&rounded=true"
-  },
-  {
     name: "Adenike Mogbojuri",
     role: "Content Creator & Social Media Manager",
     bio: "Crafting Nourie's story and engaging our community across all social platforms with compelling content.",
@@ -69,12 +63,6 @@ const teamMembers = [
     role: "FullStack Dev Intern",
     bio: "Supporting our tech team with enthusiasm and a drive to build great software solutions.",
     image: "https://ui-avatars.com/api/?name=Jesujoba+Jemimah&size=150&background=356859&color=ffffff&rounded=true"
-  },
-  {
-    name: "Unwaba Maria",
-    role: "Cleaner / Kitchen Assistant",
-    bio: "Maintaining a pristine and hygienic kitchen environment, the foundation of our food quality promise.",
-    image: "https://ui-avatars.com/api/?name=Unwaba+Maria&size=150&background=F9A03F&color=ffffff&rounded=true"
   },
   {
     name: "Yakubu Numshi Yohanna",
